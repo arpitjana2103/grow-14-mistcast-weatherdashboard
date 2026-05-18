@@ -8,7 +8,7 @@ export default function Logo() {
                 alt="openweathercast-logo"
                 className="mr-0.5 h-6 translate-y-[-0.4rem]"
             />
-            <span className="bg-linear-to-r from-[#2b7fff] to-[#00bcff] bg-clip-text text-2xl font-black tracking-normal text-transparent">
+            <span className="bg-linear-to-r from-[#1e9df1] to-[#1447e6] bg-clip-text text-2xl font-black tracking-normal text-transparent">
                 penCast
             </span>
         </div>
