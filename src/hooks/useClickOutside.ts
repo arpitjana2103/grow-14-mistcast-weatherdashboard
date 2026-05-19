@@ -9,10 +9,8 @@ type UseClickOutsideProps = {
 export function useClickOutside({ ref, callback, enabled }: UseClickOutsideProps) {
     useEffect(
         function () {
-            if (!enabled) return;
-
             function handleClick(e: MouseEvent) {
-                if (ref.current && !ref.current.contains(e.target as Node)) callback();
+                if (enabled && ref.current && !ref.current.contains(e.target as Node)) callback();
             }
 
             document.addEventListener("mousedown", handleClick);

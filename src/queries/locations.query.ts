@@ -10,7 +10,7 @@ export function useLocationSearchQuery(query: string) {
     return useQuery<TLocationData[]>({
         queryKey: ["locations", query],
         queryFn: async function ({ signal }) {
-            await sleepQuery(1000 * 2, signal);
+            await sleepQuery(1000 * 1, signal);
             return searchLocations(query);
         },
         enabled: query.length > 0,

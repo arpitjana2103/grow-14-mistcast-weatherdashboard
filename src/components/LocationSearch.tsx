@@ -1,69 +1,82 @@
-import { MapsSquare02Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { useState } from "react";
+import type { TLocationData } from "@/schemas/location.schema";
 
-import {
-    Combobox,
-    ComboboxContent,
-    ComboboxInput,
-    ComboboxItem,
-    ComboboxList,
-} from "@/components/ui/combobox";
+import { Search, X as Cross } from "lucide-react";
+import { useRef, useState } from "react";
+
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { useLocationContext } from "@/contexts/location.context";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useLocationsCache } from "@/hooks/useLocationCache";
 import { useLocationSearchQuery } from "@/queries/locations.query";
 
-import { Spinner } from "./ui/spinner";
+import LocationsPopover from "./LocationsPopover";
+import Spinner from "./Spinner";
+
+export type TLocationsType = "fetched" | "saved";
 
 export default function LocationSearch() {
-    const { savedLocations, handleSaveLocation } = useLocationsCache();
-    const [inputValue, setInputValue] = useState("");
+    // --- Search Query: input value → debounce → fetch results ---
+    const [query, setQuery] = useState("");
+    const debouncedQuery = useDebounce(query.toLocaleLowerCase(), 400);
+    const { data: fetchedLocations = [], isFetching } = useLocationSearchQuery(debouncedQuery);
+
+    // --- Location Selection: save picked location, fall back to saved list ---
     const { setCurrentLocation } = useLocationContext();
-    const debouncedQuery = useDebounce(inputValue.toLocaleLowerCase(), 500);
+    const { savedLocations, handleSaveLocation } = useLocationsCache();
+    const savedLocationsArr = Array.from(savedLocations.values()).toReversed();
 
-    const savedLocationsArr = Array.from(savedLocations.values());
-    const { data: locations = [], isFetching } = useLocationSearchQuery(debouncedQuery);
+    // --- Popover: visibility state, outside-click to close ---
+    const popoverRef = useRef<HTMLDivElement>(null);
+    const [popoverOpen, setPopverOpen] = useState(false);
+    useClickOutside({
+        ref: popoverRef,
+        callback: () => setPopverOpen(false),
+        enabled: popoverOpen,
+    });
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setInputValue(e.target.value);
+    // --- Locations to Render ---
+    const showingSavedLocations = fetchedLocations.length === 0 && !isFetching;
+    const locationsToRender = showingSavedLocations ? savedLocationsArr : fetchedLocations;
+
+    // -- Handler Functions ---
+    function handleSelectLocation(location: TLocationData, locationType: TLocationsType) {
+        if (locationType === "fetched") handleSaveLocation(location);
+        setCurrentLocation(location);
+        setPopverOpen(false);
+        setQuery(location.display_place);
     }
 
     return (
-        <div>
-            <Combobox items={locations.length > 0 ? locations : savedLocationsArr}>
-                <ComboboxInput
+        <div className="relative" ref={popoverRef}>
+            <InputGroup className="relative h-10 w-[20rem]">
+                <InputGroupInput
                     placeholder="Search for location"
-                    onChange={handleChange}
-                    onClear={() => setInputValue("")}
-                    showClear
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onFocus={() => setPopverOpen(true)}
                 />
-                <ComboboxContent>
-                    <>
-                        {isFetching && <Spinner />}
-                        <ComboboxList>
-                            {(location) => (
-                                <ComboboxItem
-                                    key={location.place_id}
-                                    value={location.display_name}
-                                    onClick={() => {
-                                        handleSaveLocation(location);
-                                        setCurrentLocation(location);
-                                    }}
-                                >
-                                    {location.display_name}
-                                </ComboboxItem>
-                            )}
-                        </ComboboxList>
-                        <div className="flex justify-center p-2">
-                            <a href="#" className="flex items-center gap-1.5 text-sm underline">
-                                <HugeiconsIcon icon={MapsSquare02Icon} size={15} />
-                                <span>Find Location on Map</span>
-                            </a>
-                        </div>
-                    </>
-                </ComboboxContent>
-            </Combobox>
+                <InputGroupAddon>
+                    {isFetching ? <Spinner /> : <Search size={18} strokeWidth={2} />}
+                </InputGroupAddon>
+                {query && (
+                    <button
+                        onClick={() => {
+                            setQuery("");
+                        }}
+                        className="absolute top-1/2 right-3 z-1000 -translate-y-1/2 cursor-pointer p-0.5"
+                    >
+                        <Cross size={18} strokeWidth={2} className="text-foreground/60" />
+                    </button>
+                )}
+            </InputGroup>
+
+            <LocationsPopover
+                isOpen={popoverOpen}
+                locationsType={showingSavedLocations ? "saved" : "fetched"}
+                locations={locationsToRender}
+                onSelectLocation={handleSelectLocation}
+            />
         </div>
     );
 }

@@ -7,8 +7,8 @@ export const LocationDataSchema = z.object({
     lon: z.string(),
 
     display_name: z.string(),
-    display_place: z.string().optional(),
-    display_address: z.string().optional(),
+    display_place: z.string(),
+    display_address: z.string(),
 });
 
 export const LocationDataResponseSchema = z.array(LocationDataSchema);
