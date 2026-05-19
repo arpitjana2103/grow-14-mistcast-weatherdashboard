@@ -11,7 +11,7 @@ export default function Nav() {
                     className={({ isActive }) =>
                         cn(
                             "block border px-2 py-0.5 transition-colors",
-                            "hover:bg-primary/10 hover:text-primary bg-input/20 dark:bg-input/30",
+                            "hover:bg-primary/10 hover:text-primary bg-input/20 ",
                             isActive && "bg-primary/10 text-primary border-primary/30",
                         )
                     }
@@ -25,7 +25,7 @@ export default function Nav() {
                     className={({ isActive }) =>
                         cn(
                             "block border px-2 py-0.5 transition-colors",
-                            "hover:bg-primary/10 hover:text-primary bg-input/20 dark:bg-input/30",
+                            "hover:bg-primary/10 hover:text-primary bg-input/20 ",
                             isActive && "bg-primary/10 text-primary border-primary/30",
                         )
                     }
