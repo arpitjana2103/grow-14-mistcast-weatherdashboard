@@ -29,7 +29,7 @@ export const LocationProvider = function ({ children }: LocationProviderProps) {
             currentLocation,
             setCurrentLocation,
         }),
-        [currentLocation],
+        [currentLocation, setCurrentLocation],
     );
 
     return <LocationContext.Provider value={value}>{children}</LocationContext.Provider>;
