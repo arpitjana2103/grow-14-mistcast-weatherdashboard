@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 
+import GitHubBtn from "../GitHubBtn";
 import LightDarkToggle from "../LightDarkToggle";
 import LocationSearch from "../LocationSearch";
 import Logo from "../Logo";
@@ -24,6 +25,9 @@ export default function NavBar() {
                     </li>
                     <li>
                         <LightDarkToggle />
+                    </li>
+                    <li>
+                        <GitHubBtn />
                     </li>
                 </ul>
             </div>
