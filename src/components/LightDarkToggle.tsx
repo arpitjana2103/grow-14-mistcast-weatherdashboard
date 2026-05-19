@@ -20,9 +20,12 @@ export default function LightDarkToggle() {
     }
     return (
         <div>
-            <Button className="h-10 w-10 cursor-pointer border" onClick={handleToggle}>
-                {!isDark && <Sun size={19} />}
-                {isDark && <Moon size={19} />}
+            <Button
+                className="h-10 w-10 cursor-pointer border border-primary/30 bg-primary/10 hover:bg-primary/20"
+                onClick={handleToggle}
+            >
+                {!isDark && <Sun size={21} strokeWidth={2} className="text-primary/90" />}
+                {isDark && <Moon size={21} strokeWidth={2} className="text-primary/90" />}
             </Button>
         </div>
     );

@@ -48,8 +48,8 @@ export default function LocationsPopover({
 
 function FindLocationOnMapItem() {
     return (
-        <li className="flex cursor-pointer items-center gap-3 border bg-sky-600/20 px-2.5 py-2 transition hover:bg-sky-600/30">
-            <a href="#" className="flex w-full items-center justify-center gap-2 text-blue-500">
+        <li className="flex cursor-pointer items-center gap-3 border border-primary bg-primary/20 px-2.5 py-2 transition hover:bg-primary/30">
+            <a href="#" className="flex w-full items-center justify-center gap-2 text-primary">
                 <span>
                     <LocateFixed size={19} strokeWidth={2} />
                 </span>
