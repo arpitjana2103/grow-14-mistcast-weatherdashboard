@@ -1,3 +1,9 @@
+import Container from "../Container";
+
 export default function Map() {
-    return <div>Map</div>;
+    return (
+        <Container>
+            <div>Map</div>
+        </Container>
+    );
 }

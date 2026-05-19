@@ -1,3 +1,9 @@
+import Container from "../Container";
+
 export default function Forecast() {
-    return <div>Forecast</div>;
+    return (
+        <Container>
+            <div>Forecast</div>
+        </Container>
+    );
 }
