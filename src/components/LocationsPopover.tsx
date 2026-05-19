@@ -2,6 +2,7 @@ import type { TLocationsType } from "./LocationSearch";
 import type { TLocationData } from "@/schemas/location.schema";
 
 import { LocateFixed } from "lucide-react";
+import { NavLink } from "react-router";
 
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,7 @@ type Props = {
     locations: TLocationData[];
     onSelectLocation: (location: TLocationData, locationType: TLocationsType) => void;
     locationsType: TLocationsType;
+    setPopverOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function LocationsPopover({
@@ -19,6 +21,7 @@ export default function LocationsPopover({
     locationsType,
     locations,
     onSelectLocation,
+    setPopverOpen,
 }: Props) {
     return (
         <div
@@ -30,7 +33,7 @@ export default function LocationsPopover({
             )}
         >
             <ul>
-                <FindLocationOnMapItem />
+                <FindLocationOnMapItem setPopverOpen={setPopverOpen} />
                 {locations.map(function (location) {
                     return (
                         <LocationListItem
@@ -46,16 +49,24 @@ export default function LocationsPopover({
     );
 }
 
-function FindLocationOnMapItem() {
+function FindLocationOnMapItem({
+    setPopverOpen,
+}: {
+    setPopverOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
     return (
         <li className="flex cursor-pointer items-center gap-3 border border-primary bg-primary/20 px-2.5 py-2 transition hover:bg-primary/30">
-            <a href="#" className="flex w-full items-center justify-center gap-2 text-primary">
+            <NavLink
+                to="map"
+                className="flex w-full items-center justify-center gap-2 text-primary"
+                onClick={() => setPopverOpen(false)}
+            >
                 <span>
                     <LocateFixed size={19} strokeWidth={2} />
                 </span>
 
                 <span>Find on Map</span>
-            </a>
+            </NavLink>
         </li>
     );
 }

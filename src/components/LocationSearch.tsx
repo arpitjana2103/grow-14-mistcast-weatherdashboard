@@ -76,6 +76,7 @@ export default function LocationSearch() {
                 locationsType={showingSavedLocations ? "saved" : "fetched"}
                 locations={locationsToRender}
                 onSelectLocation={handleSelectLocation}
+                setPopverOpen={setPopverOpen}
             />
         </div>
     );
