@@ -10,7 +10,7 @@ export default function GitHubBtn() {
             target="_blank"
             rel="noopener noreferrer"
         >
-            <Button className="h-10 cursor-pointer border border-foreground/50 bg-foreground/10 hover:bg-foreground/20">
+            <Button className="h-10 cursor-pointer border border-foreground/50 bg-accent hover:bg-accent/20">
                 <HugeiconsIcon
                     icon={GithubIcon}
                     size={19}
