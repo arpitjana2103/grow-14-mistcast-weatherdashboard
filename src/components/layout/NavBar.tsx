@@ -5,6 +5,7 @@ import LightDarkToggle from "../LightDarkToggle";
 import LocationSearch from "../LocationSearch";
 import Logo from "../Logo";
 import Nav from "../Nav";
+import UnitSystemToggle from "../UnitSystemToggle";
 import Container from "./Container";
 
 export default function NavBar() {
@@ -18,17 +19,22 @@ export default function NavBar() {
                         </NavLink>
                     </div>
 
-                    <ul className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
+                    <ul className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
                         <li>
                             <LocationSearch />
                         </li>
-                        <div className="flex w-[20rem] items-center justify-between sm:flex-row">
+                        <div className="flex items-center justify-between gap-3 sm:flex-row">
                             <li>
                                 <Nav />
                             </li>
                             <li>
                                 <LightDarkToggle />
                             </li>
+
+                            <li>
+                                <UnitSystemToggle />
+                            </li>
+
                             <li>
                                 <GitHubBtn />
                             </li>

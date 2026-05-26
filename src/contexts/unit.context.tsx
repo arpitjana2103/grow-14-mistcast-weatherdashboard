@@ -1,10 +1,12 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { useMemo, useState, createContext } from "react";
+import { useMemo, useState, createContext, useContext } from "react";
+
+export type TUnit = "metric" | "imperial";
 
 type ContextType = {
-    unit: "metric" | "imperial";
-    setUnit: Dispatch<SetStateAction<"metric" | "imperial">>;
+    unit: TUnit;
+    setUnit: Dispatch<SetStateAction<TUnit>>;
 };
 
 const UnitContext = createContext<ContextType | null>(null);
@@ -13,8 +15,8 @@ type UnitProviderProps = {
     children: React.ReactNode;
 };
 
-const UnitProvider = function ({ children }: UnitProviderProps) {
-    const [unit, setUnit] = useState<"metric" | "imperial">("metric");
+export const UnitProvider = function ({ children }: UnitProviderProps) {
+    const [unit, setUnit] = useState<TUnit>("metric");
 
     const value = useMemo(
         function () {
@@ -24,6 +26,12 @@ const UnitProvider = function ({ children }: UnitProviderProps) {
     );
 
     return <UnitContext.Provider value={value}>{children}</UnitContext.Provider>;
+};
+
+export const useUnitContext = function () {
+    const context = useContext(UnitContext);
+    if (context === null) throw new Error("useUnitContext must be used within a UnitProvider");
+    return context;
 };
 
 export const WeatherUnits = {
@@ -60,5 +68,3 @@ export const WeatherUnits = {
         snow: "mm",
     },
 } as const;
-
-export { UnitContext, UnitProvider };
