@@ -22,7 +22,7 @@ export function LocationListItem({ location, saved, onSelect }: Props) {
     console.log(countryCodeToEmoji(location.address.country_code));
     return (
         <li
-            className="flex cursor-pointer items-start gap-3 border-x border-t bg-accent px-2.5 py-2 transition last:border-b hover:bg-accent/20"
+            className="flex cursor-pointer items-start gap-3 border-x border-t bg-accent px-2.5 py-2 transition first:rounded-t-sm last:rounded-b-sm last:border-b hover:bg-accent/20"
             onClick={onSelect}
         >
             <span>

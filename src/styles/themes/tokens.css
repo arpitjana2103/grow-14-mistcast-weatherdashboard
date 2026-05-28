@@ -17,6 +17,7 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-white-foreground: var(--white-foreground);
     --color-card: var(--card);
     --color-card-foreground: var(--card-foreground);
     --color-popover: var(--popover);
@@ -53,8 +54,8 @@
     --font-serif: var(--font-serif);
     --font-emoji: var(--font-emoji);
 
-    --radius-sm: calc(var(--radius) - 0px);
-    --radius-md: calc(var(--radius) - 0px);
+    --radius-sm: calc(var(--radius) - 0.2px);
+    --radius-md: var(--radius);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 0px);
 

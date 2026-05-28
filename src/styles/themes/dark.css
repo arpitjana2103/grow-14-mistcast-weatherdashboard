@@ -36,7 +36,7 @@
     --secondary-foreground: var(--slate300);
     --primary: var(--blue500);
     --ring: var(--blue500);
-    --border: var(--slate700);
+    --border: var(--slate600);
     --accent: var(--slate800);
     --input: var(--slate800);
     --muted-foreground: var(--slate500);

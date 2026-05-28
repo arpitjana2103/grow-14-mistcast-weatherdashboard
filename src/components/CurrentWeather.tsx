@@ -25,10 +25,10 @@ export default function CurrentWeather() {
     if (isFetching) return <div>Loading...</div>;
 
     return (
-        <div className="bg-primary/15 p-4">
+        <div className="rounded-md bg-card bg-linear-to-bl from-orange-500 to-orange-50 p-4">
             <div
                 className={cn(
-                    "grid gap-4",
+                    "grid gap-4 ",
                     "h-124 grid-cols-[15rem_auto_auto] grid-rows-2",
                     "mdlg:h-64 mdlg:grid-cols-[16rem_auto_16rem] mdlg:grid-rows-1",
                 )}
@@ -92,12 +92,7 @@ const weatherImageDescription: Record<string, string> = {
 
 function ImageOverlay({ icon, className }: { icon: string; className?: string }) {
     return (
-        <div
-            className={cn(
-                "relative overflow-hidden border-3 border-primary/60 dark:border-primary ",
-                className,
-            )}
-        >
+        <div className={cn("relative overflow-hidden dark:border-primary rounded-md", className)}>
             {/* Background weather image */}
             <img
                 src={`/images/${icon}.jpg`}
@@ -124,12 +119,13 @@ function ImageOverlay({ icon, className }: { icon: string; className?: string })
 
 function MiniMap({ lat, lon, className }: { lat: number; lon: number; className?: string }) {
     return (
-        <div className={cn(className, "border-3 border-primary/60 dark:border-primary")}>
+        <div className={cn(className, "rounded-md border-2 border-border/40 overflow-hidden")}>
             <MapContainer
                 center={[lat, lon]}
                 zoom={7}
                 scrollWheelZoom={true}
                 className="h-full w-full"
+                zoomControl={false}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

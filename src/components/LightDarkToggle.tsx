@@ -23,13 +23,22 @@ export default function LightDarkToggle() {
     return (
         <div>
             <Button
-                className="h-10 w-10 cursor-pointer border border-primary/60 bg-primary/10 transition-colors hover:bg-primary/5"
+                className="h-10 w-10 cursor-pointer rounded-full bg-primary transition-colors"
                 onClick={handleToggle}
             >
-                {!isDark && <CloudSun strokeWidth={1.5} className="size-5.5 text-primary/90" />}
+                {!isDark && (
+                    <CloudSun
+                        strokeWidth={1.8}
+                        className="size-5 translate-x-[0.1rem] text-white-foreground"
+                    />
+                )}
 
                 {isDark && (
-                    <HugeiconsIcon icon={MoonFastWindIcon} className="size-5.5 text-primary/90" />
+                    <HugeiconsIcon
+                        icon={MoonFastWindIcon}
+                        strokeWidth={1.8}
+                        className="size-5 text-white-foreground"
+                    />
                 )}
             </Button>
         </div>

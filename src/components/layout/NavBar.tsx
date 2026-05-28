@@ -20,11 +20,11 @@ export default function NavBar() {
                             </NavLink>
                         </div>
 
-                        <ul className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
+                        <ul className="flex flex-col items-center gap-2 md:flex-row md:gap-5">
                             <li>
                                 <LocationSearch />
                             </li>
-                            <div className="flex items-center justify-between gap-3 sm:flex-row">
+                            <div className="flex items-center justify-between gap-2 sm:flex-row">
                                 <li>
                                     <Nav />
                                 </li>
