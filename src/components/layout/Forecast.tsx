@@ -3,6 +3,7 @@ import { useWeatherQuery } from "@/queries/weather.query";
 
 import CurrentLocation from "../CurrentLocation";
 import CurrentWeather from "../CurrentWeather";
+import WeatherIcons from "../WeatherIcons";
 import Container from "./Container";
 
 export default function Forecast() {
@@ -12,12 +13,11 @@ export default function Forecast() {
         Number(currentLocation?.lon || 0),
     );
 
-    console.log(currentLocation?.lat);
-    console.log(currentLocation?.lon);
     if (isFetching) return <div>Loading...</div>;
     if (isError) {
         return <div>{error.message}</div>;
     }
+
     return (
         <Container>
             <CurrentLocation />

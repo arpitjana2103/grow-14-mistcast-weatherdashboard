@@ -56,3 +56,22 @@
         @apply text-secondary-foreground/80;
     }
 }
+
+/*#miniMap .leaflet-control-zoom-in,
+#miniMap .leaflet-control-zoom-out,
+#miniMap .leaflet-layer,
+#miniMap .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(100%);
+}*/
+
+/*.leaflet-control-attribution {
+    z-index: 800 !important;
+}*/
+
+.leaflet-bottom.leaflet-right {
+    z-index: 800 !important;
+}
+
+.leaflet-top.leaflet-left {
+    z-index: 700 !important;
+}

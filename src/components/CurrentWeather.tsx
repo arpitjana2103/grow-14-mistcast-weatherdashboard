@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import { useWeatherQuery } from "@/queries/weather.query";
 import { getTimeDetails, type TTimeDetails } from "@/utils/time-fn.util";
 
-import WeatherIcons from "./WeatherIcons";
-
 export default function CurrentWeather() {
     const { currentLocation } = useLocationContext();
     const { isFetching, data } = useWeatherQuery(
@@ -25,34 +23,34 @@ export default function CurrentWeather() {
     if (isFetching) return <div>Loading...</div>;
 
     return (
-        <div className="rounded-md bg-card bg-linear-to-bl from-orange-500 to-orange-50 p-4">
+        <div className="rounded-md bg-card bg-linear-to-bl from-orange-400 to-orange-100 p-2 shadow-2xl sm:p-3 dark:from-blue-500 dark:to-slate-900/12">
             <div
                 className={cn(
-                    "grid gap-4 ",
-                    "h-124 grid-cols-[15rem_auto_auto] grid-rows-2",
+                    "grid gap-2 sm:gap-3",
+                    "h-124 grid-cols-1 grid-rows-2",
+                    "smmd:grid-cols-[15rem_auto_auto] smmd:grid-rows-2",
                     "mdlg:h-64 mdlg:grid-cols-[16rem_auto_16rem] mdlg:grid-rows-1",
                 )}
             >
-                <ImageOverlay icon={icon!} className="aspect-square w-full" />
-                <div className={cn("col-span-2 col-start-2", "mdlg:col-span-1")}>Green</div>
+                <ImageOverlay icon={icon!} className="w-full smmd:aspect-square" />
+                <div
+                    className={cn(
+                        "smmd:col-span-2 smmd:col-start-2 bg-background rounded-md p-4",
+                        "mdlg:col-span-1",
+                    )}
+                >
+                    <Time timeD />
+                </div>
                 <MiniMap
                     lat={Number(currentLocation?.lat || 0)}
                     lon={Number(currentLocation?.lon || 0)}
-                    className={cn("w-full aspect-square, col-span-3", "mdlg:col-span-1", "")}
+                    className={cn(
+                        "w-full aspect-square, col-span-3",
+                        "mdlg:col-span-1",
+                        "hidden smmd:block",
+                    )}
                 />
             </div>
-            {/*<ImageOverlay className="col-span-1" icon={icon!} />
-            <div></div>
-            <MiniMap
-                className="col-span-1 -col-start-1"
-                lat={Number(currentLocation?.lat || 0)}
-                lon={Number(currentLocation?.lon || 0)}
-            />*/}
-            {/*<div>
-                <WeatherIcons type={icon!} size="lg" />
-                <span>{temperature}</span>
-                <span>{description}</span>
-            </div>*/}
         </div>
     );
 }
@@ -119,13 +117,13 @@ function ImageOverlay({ icon, className }: { icon: string; className?: string })
 
 function MiniMap({ lat, lon, className }: { lat: number; lon: number; className?: string }) {
     return (
-        <div className={cn(className, "rounded-md border-2 border-border/40 overflow-hidden")}>
+        <div id="miniMap" className={cn(className, "rounded-md overflow-hidden")}>
             <MapContainer
                 center={[lat, lon]}
                 zoom={7}
                 scrollWheelZoom={true}
                 className="h-full w-full"
-                zoomControl={false}
+                zoomControl={true}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
