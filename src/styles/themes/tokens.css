@@ -54,10 +54,10 @@
     --font-serif: var(--font-serif);
     --font-emoji: var(--font-emoji);
 
-    --radius-sm: calc(var(--radius) - 0.2px);
+    --radius-sm: calc(var(--radius) - 0.1rem);
     --radius-md: var(--radius);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 0px);
+    --radius-xl: var(--radius);
 
     --shadow-2xs: var(--shadow-2xs);
     --shadow-xs: var(--shadow-xs);

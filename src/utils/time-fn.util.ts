@@ -32,7 +32,7 @@ export type TTimeDetails = {
     /** IANA timezone string, e.g. "Asia/Kolkata" */
     timezone: string;
     /** Abbreviated timezone, e.g. "IST" */
-    timezoneShort: string;
+    timezoneOffset: string;
 };
 
 export function getTimeDetails({
@@ -60,9 +60,8 @@ export function getTimeDetails({
         second: formatInTimeZone(date, timezone, "ss"),
         period: formatInTimeZone(date, timezone, "a"),
         timezone: timezone,
-        timezoneShort: formatInTimeZone(date, timezone, "zzz"),
+        timezoneOffset: formatInTimeZone(date, timezone, "zzz"),
     };
 }
 
-// console.log(getTimeDetails(1779939687, "Asia/Kolkata"));
-
+console.log(getTimeDetails({ utcTimestampInSeconds: 1779939687, timezone: "Asia/Kolkata" }));

@@ -67,4 +67,4 @@ export const WeatherUnits = {
         rain: "mm",
         snow: "mm",
     },
-} as const;
+} as const satisfies Record<TUnit, Record<string, string>>;

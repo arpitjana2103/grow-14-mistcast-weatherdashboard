@@ -1,5 +1,4 @@
 import type { TWeatherIcon } from "../schemas/weather.schema";
-import type { IconSvgObject } from "@hugeicons/core-free-icons";
 
 import {
     CloudAngledRainIcon,
@@ -13,6 +12,8 @@ import {
     SunCloud02Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+
+import { cn } from "@/lib/utils";
 
 type TIcons = TWeatherIcon;
 // | "fullmoon"
@@ -135,7 +136,13 @@ export default function WeatherIcons({
     const CustomIcon = CUSTOM_ICONS[type];
 
     if (HugeIcon) {
-        return <HugeiconsIcon icon={HugeIcon} strokeWidth={strokeWidth} className={className} />;
+        return (
+            <HugeiconsIcon
+                icon={HugeIcon}
+                strokeWidth={strokeWidth}
+                className={cn("", className)}
+            />
+        );
     }
 
     if (CustomIcon) {
