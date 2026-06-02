@@ -1,6 +1,6 @@
 import CurrentWeatherCard from "../components/forecastPage/current-weather-card/CurrentWeatherCard";
+import CurrentLocation from "../components/forecastPage/CurrentLocation";
 import Container from "../components/layout/Container";
-import CurrentLocation from "../components/navbar/CurrentLocation";
 import NavBar from "../components/navbar/NavBar";
 
 export default function ForecastPage() {

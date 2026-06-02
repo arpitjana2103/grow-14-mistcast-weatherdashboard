@@ -11,6 +11,9 @@ export const LocationDataSchema = z.object({
     display_address: z.string(),
     address: z.object({
         country_code: z.string(),
+        state: z.string().optional(),
+        country: z.string().optional(),
+        postcode: z.string().optional(),
     }),
 });
 

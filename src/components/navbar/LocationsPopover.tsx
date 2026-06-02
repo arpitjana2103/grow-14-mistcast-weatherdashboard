@@ -71,7 +71,7 @@ function FindLocationOnMapItem({
             )}
         >
             <NavLink
-                to="map"
+                to="/map"
                 className="flex w-full items-center justify-center gap-2 text-white-foreground"
                 onClick={() => setPopverOpen(false)}
             >
