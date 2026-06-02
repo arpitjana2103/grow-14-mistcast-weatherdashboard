@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useUnitContext, type TUnit } from "@/contexts/unit.context";
 import { cn } from "@/lib/utils";
 
-import { Label } from "./ui/label";
+import { Label } from "../ui/label";
 
 export default function UnitSystemToggle() {
     const { unit, setUnit } = useUnitContext();

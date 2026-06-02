@@ -10,8 +10,8 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { useLocationsCache } from "@/hooks/useLocationCache";
 import { useLocationSearchQuery } from "@/queries/locations.query";
 
+import Spinner from "../Spinner";
 import LocationsPopover from "./LocationsPopover";
-import Spinner from "./Spinner";
 
 export type TLocationsType = "fetched" | "saved";
 

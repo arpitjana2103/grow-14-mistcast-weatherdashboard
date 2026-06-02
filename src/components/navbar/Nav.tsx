@@ -8,7 +8,7 @@ export default function Nav() {
     return (
         <ul className="flex items-center gap-1 p-0.5">
             <li>
-                <NavLink to="forecast">
+                <NavLink to="/forecast">
                     {({ isActive }) => (
                         <div
                             className={cn(
@@ -24,7 +24,7 @@ export default function Nav() {
                 </NavLink>
             </li>
             <li>
-                <NavLink to="map">
+                <NavLink to="/map">
                     {({ isActive }) => (
                         <div
                             className={cn(

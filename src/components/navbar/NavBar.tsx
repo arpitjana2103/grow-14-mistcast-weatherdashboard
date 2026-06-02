@@ -1,17 +1,19 @@
 import { NavLink } from "react-router";
 
-import GitHubBtn from "../GitHubBtn";
-import LightDarkToggle from "../LightDarkToggle";
-import LocationSearch from "../LocationSearch";
-import Logo from "../Logo";
-import Nav from "../Nav";
-import UnitSystemToggle from "../UnitSystemToggle";
-import Container from "./Container";
+import { cn } from "@/lib/utils";
 
-export default function NavBar() {
+import GitHubBtn from "../GitHubBtn";
+import Container from "../layout/Container";
+import Logo from "../Logo";
+import LightDarkToggle from "./LightDarkToggle";
+import LocationSearch from "./LocationSearch";
+import Nav from "./Nav";
+import UnitSystemToggle from "./UnitSystemToggle";
+
+export default function NavBar({ className }: { className?: string }) {
     return (
-        <header className="w-screen">
-            <div className="fixed z-1000 w-full border-b border-border/20 bg-background">
+        <header className={cn("w-screen", className)}>
+            <div className="z-1000 w-full border-b border-border/20 bg-background">
                 <Container>
                     <div className="flex flex-col items-center justify-between gap-4 py-4 mdlg:flex-row">
                         <div>
