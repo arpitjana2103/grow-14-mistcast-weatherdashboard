@@ -38,13 +38,13 @@ export default function MapLayerControl({
 }) {
     return (
         <TooltipProvider>
-            <ul className="flex w-fit gap-[0.2rem] overflow-hidden rounded-md border-3 border-orange-500 bg-orange-500 shadow-2xl dark:border-blue-500 dark:bg-blue-500">
+            <ul className="flex w-fit gap-[0.2rem] overflow-hidden rounded-md bg-linear-to-r from-orange-500 to-orange-400 px-1 py-1 shadow-2xl dark:from-blue-500 dark:to-blue-400">
                 {(Object.keys(layersIcon) as TMapLayers[]).map((layer) => (
                     <Tooltip key={layer}>
                         <TooltipTrigger asChild>
                             <li
                                 className={cn(
-                                    "bg-orange-500 dark:bg-blue-500 p-2 cursor-pointer transition-colors text-white-foreground",
+                                    "p-[0.4rem] cursor-pointer transition-colors text-white-foreground",
                                     "hover:bg-background hover:text-foreground hover:dark:bg-background rounded-sm",
                                     currentlayer === layer &&
                                         "bg-background dark:bg-background text-foreground",
@@ -55,7 +55,7 @@ export default function MapLayerControl({
                             </li>
                         </TooltipTrigger>
                         <TooltipContent
-                            className="z-1001 rounded-sm bg-background text-base text-foreground"
+                            className="z-1001 rounded-sm bg-background text-base text-foreground shadow-2xl"
                             side="bottom"
                         >
                             <p>{layer.split("_")[0]?.replace(/^./, (c) => c.toUpperCase())}</p>

@@ -25,7 +25,7 @@ export default function MapLegend({ mapType, className }: Props) {
     return (
         <div
             className={cn(
-                "flex w-48 flex-col gap-1 rounded-xl bg-background/70 p-4 shadow-lg xs:w-96",
+                "flex w-48 flex-col gap-1 rounded-xl bg-background/50 px-4 py-3 shadow-lg xs:w-96",
                 className,
             )}
         >

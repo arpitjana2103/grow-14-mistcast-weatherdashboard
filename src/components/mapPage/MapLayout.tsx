@@ -1,10 +1,9 @@
 import { FullScreenIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Button } from "../ui/button";
 import { LeafletMap } from "./LeafletMap";
 import MapLayerControl, { type TMapLayers } from "./MapLayerControl";
 import MapLegend from "./MapLegend";

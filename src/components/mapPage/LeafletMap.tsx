@@ -64,15 +64,18 @@ function CustomZoomControl() {
     return (
         <div
             ref={containerRef}
-            className="absolute top-5 right-5 z-1000 flex cursor-pointer flex-col overflow-hidden rounded-sm bg-background shadow-lg"
+            className="absolute top-5 right-5 z-1000 flex cursor-pointer flex-col overflow-hidden rounded-sm shadow-lg"
         >
-            <button onClick={() => map.zoomIn()} className="cursor-pointer p-2 transition-colors">
+            <button
+                onClick={() => map.zoomIn()}
+                className="cursor-pointer bg-background p-2 transition-colors hover:bg-background/80"
+            >
                 <HugeiconsIcon strokeWidth={2} icon={PlusSignIcon} size={18} />
             </button>
-            <div className="border-t border-border/50 hover:bg-background/80" />
+
             <button
                 onClick={() => map.zoomOut()}
-                className="cursor-pointer p-2 transition-colors hover:bg-background/80"
+                className="cursor-pointer bg-background p-2 transition-colors hover:bg-background/80"
             >
                 <HugeiconsIcon strokeWidth={2} icon={MinusSignIcon} size={18} />
             </button>

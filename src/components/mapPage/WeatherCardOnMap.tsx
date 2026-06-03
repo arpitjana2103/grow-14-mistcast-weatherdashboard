@@ -69,7 +69,7 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
     return (
         <div
             className={cn(
-                "w-[18rem] rounded-md bg-linear-to-bl to-orange-500 from-orange-200/70 p-2 shadow-2xl sm:p-3 dark:to-blue-500 dark:from-blue-950/70",
+                "w-[18rem] rounded-md bg-linear-to-bl to-orange-500 from-orange-200/70 p-2 shadow-2xl  dark:to-blue-500 dark:from-blue-950/70",
                 className,
             )}
         >
@@ -99,12 +99,12 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                         className="align-end block h-12 w-12 text-primary"
                     />
                     <span className="flex flex-col">
-                        <span className="border-b border-border text-xl text-primary">
+                        <span className="border-b border-border text-lg text-primary">
                             {Math.round(temperature!)}
                             {tempUnit}
                         </span>
 
-                        <span className="block pt-0.5 text-lg text-secondary-foreground">
+                        <span className="block pt-0.5 text-base text-secondary-foreground">
                             {Math.round(feelsLike!)}
                             {tempUnit}
                         </span>
@@ -113,14 +113,14 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
 
                 <span>
                     <span className="flex items-end gap-3">
-                        <span className="text-lg">{description}</span>
+                        <span className="text-base">{description}</span>
                     </span>
                     <span></span>
                 </span>
 
                 <div className="flex justify-end">
                     <NavLink to="/forecast">
-                        <Button className="mt-4 w-fit cursor-pointer border-primary bg-primary/10 py-4 text-base font-normal text-primary hover:bg-primary/20">
+                        <Button className="mt-4 w-fit cursor-pointer border-primary bg-primary/10 py-3 text-sm font-normal text-primary hover:bg-primary/20">
                             See Full Forecast
                         </Button>
                     </NavLink>
