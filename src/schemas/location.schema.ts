@@ -12,6 +12,8 @@ export const LocationDataSchema = z.object({
     address: z.object({
         country_code: z.string(),
         quarter: z.string().optional(),
+        road: z.string().optional(),
+        county: z.string().optional(),
         city: z.string().optional(),
         town: z.string().optional(),
         region: z.string().optional(),

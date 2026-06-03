@@ -3,6 +3,7 @@ import { MapContainer, Marker, TileLayer, useMap, ZoomControl } from "react-leaf
 import { useLocationContext } from "@/contexts/location.context";
 import { cn } from "@/lib/utils";
 import { useLocationByLatLng } from "@/queries/locations.query";
+import { API_KEY as OPENWEATHERMAP_API_KEY } from "@/services/weather.service";
 
 export function LeafletMap({ className }: { className?: string }) {
     const { currentLocation, setCurrentLocation } = useLocationContext();
@@ -16,6 +17,8 @@ export function LeafletMap({ className }: { className?: string }) {
         setCurrentLocation(data);
     }
 
+    const layer = "temp_new";
+
     return (
         <div className={cn("rounded-md overflow-hidden", className)}>
             <MapContainer
@@ -25,9 +28,22 @@ export function LeafletMap({ className }: { className?: string }) {
                 className="h-full w-full"
                 zoomControl={false}
             >
-                <TileLayer
+                {/* DEFAULT */}
+                {/*<TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />*/}
+                {/* DARK */}
+                {/*<TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://api.maptiler.com/maps/streets-v4-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK"
+                />*/}
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://api.maptiler.com/maps/openstreetmap-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK"
+                />
+                <TileLayer
+                    url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${OPENWEATHERMAP_API_KEY}`}
                 />
                 <MapClick lat={lat} lon={lon} onMapClick={onMapClick} />
                 <Marker position={[lat, lon]} />
@@ -47,8 +63,8 @@ function MapClick({
     onMapClick: (lat: number, lon: number) => void;
 }) {
     const map = useMap();
-    map.panTo([lat, lon]);
 
+    map.panTo([lat, lon]);
     map.on("click", function (e) {
         const { lat: latVal, lng: lonVal } = e.latlng;
         onMapClick(latVal, lonVal);

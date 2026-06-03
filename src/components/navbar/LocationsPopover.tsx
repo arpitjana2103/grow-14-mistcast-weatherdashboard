@@ -28,7 +28,7 @@ export default function LocationsPopover({
     return (
         <div
             className={cn(
-                "absolute top-12 w-[20rem] transition-all duration-300 border border-border bg-background p-1 rounded-md z-1000",
+                "absolute top-12 w-[20rem] transition-all duration-300 shadow-ring-foreground border-background bg-background border-3 rounded-md z-1000",
                 isOpen
                     ? "visible opacity-100 translate-y-0"
                     : "invisible opacity-0 -translate-y-2 pointer-events-none",

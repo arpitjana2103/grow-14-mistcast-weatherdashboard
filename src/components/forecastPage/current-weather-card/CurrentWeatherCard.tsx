@@ -27,7 +27,7 @@ export default function CurrentWeatherCard() {
     if (isFetching) return <div>Loading...</div>;
 
     return (
-        <div className="rounded-md bg-linear-to-bl from-orange-400 to-orange-100/10 p-2 shadow-2xl sm:p-3 dark:from-blue-500 dark:to-slate-900/10">
+        <div className="rounded-md bg-linear-to-bl from-orange-500 to-orange-200 p-2 shadow-2xl sm:p-3 dark:from-blue-500 dark:to-blue-950">
             <div
                 className={cn(
                     "grid gap-2 sm:gap-3",

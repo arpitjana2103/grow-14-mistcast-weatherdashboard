@@ -14,13 +14,32 @@ import WeatherIcons from "../WeatherIcons";
 export default function WeatherCardOnMap({ className }: { className?: string }) {
     const { currentLocation } = useLocationContext();
     const { display_place, address } = currentLocation ?? {};
-    const { state, country, postcode, quarter, city, municipality, state_district, region, town } =
-        address ?? {};
-    const _address = [
-        display_place || quarter || city || town || municipality || state_district || region,
+    const {
+        state,
         country,
+        postcode,
+        quarter,
+        city,
+        municipality,
+        state_district,
+        region,
+        town,
+        road,
+        county,
+    } = address ?? {};
+    const _address = [
+        display_place,
+        road,
+        quarter,
+        city,
+        town,
+        municipality,
+        county,
+        state_district,
+        region,
         state,
         postcode,
+        country,
     ]
         .filter(Boolean)
         .join(", ");
@@ -50,7 +69,7 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
     return (
         <div
             className={cn(
-                "w-[18rem] rounded-md bg-linear-to-bl to-orange-400 from-orange-100/10 p-2 shadow-2xl sm:p-3 dark:to-blue-500 dark:from-slate-900/10",
+                "w-[18rem] rounded-md bg-linear-to-bl to-orange-500 from-orange-200/70 p-2 shadow-2xl sm:p-3 dark:to-blue-500 dark:from-blue-950/70",
                 className,
             )}
         >
@@ -63,13 +82,13 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                         />
                         {`${hour12}:${minute} ${period.toLocaleLowerCase()} (${timezoneOffset})`}
                     </span>
-                    <span className="flex gap-2">
+                    <span className="relative flex gap-2">
                         <span className="text-sm">
                             <HugeiconsIcon
                                 icon={Location01Icon}
-                                className="mr-1 inline w-4 translate-y-[-0.2rem]"
+                                className="absolute mr-1 inline w-4 translate-y-[-0.2rem]"
                             />
-                            {_address}
+                            &#160;&#160;&#160;&#160;&#160;&#160;{_address}
                         </span>
                     </span>
                 </div>

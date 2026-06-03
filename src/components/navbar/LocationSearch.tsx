@@ -1,7 +1,7 @@
 import type { TLocationData } from "@/schemas/location.schema";
 
 import { Search, X as Cross } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { useLocationContext } from "@/contexts/location.context";
@@ -24,7 +24,7 @@ export default function LocationSearch() {
     const { data: fetchedLocations = [], isFetching } = useLocationSearchQuery(debouncedQuery);
 
     // --- Location Selection: save picked location, fall back to saved list ---
-    const { setCurrentLocation } = useLocationContext();
+    const { currentLocation, setCurrentLocation } = useLocationContext();
     const { savedLocations, handleSaveLocation } = useLocationsCache();
     const savedLocationsArr = Array.from(savedLocations.values()).toReversed();
 
@@ -40,6 +40,17 @@ export default function LocationSearch() {
     // --- Locations to Render ---
     const showingSavedLocations = fetchedLocations.length === 0 && !isFetching;
     const locationsToRender = showingSavedLocations ? savedLocationsArr : fetchedLocations;
+
+    useEffect(
+        function () {
+            if (inputRef.current) {
+                if (inputRef.current.value !== currentLocation?.display_place) {
+                    inputRef.current.value = "";
+                }
+            }
+        },
+        [currentLocation?.display_place],
+    );
 
     // -- Handler Functions ---
     function handleSelectLocation(location: TLocationData, locationType: TLocationsType) {
