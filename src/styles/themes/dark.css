@@ -33,7 +33,7 @@
     */
     --background: var(--slate950);
     --foreground: var(--slate100);
-    --secondary-foreground: var(--slate300);
+    --secondary-foreground: var(--slate400);
     --primary: var(--blue500);
     --ring: var(--blue500);
     --border: var(--slate600);

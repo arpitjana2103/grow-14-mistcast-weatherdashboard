@@ -18,7 +18,7 @@ export default function MiniMap({
                 zoom={7}
                 scrollWheelZoom={true}
                 className="h-full w-full"
-                zoomControl={true}
+                zoomControl={false}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

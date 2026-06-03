@@ -1,6 +1,10 @@
 import type { TMapLayers } from "./MapLayerControl";
 
-import { MapContainer, Marker, TileLayer, useMap, ZoomControl } from "react-leaflet";
+import { PlusSignIcon, MinusSignIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import L from "leaflet";
+import { useCallback, useEffect, useRef } from "react";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 import { useLocationContext } from "@/contexts/location.context";
 import { cn } from "@/lib/utils";
@@ -28,16 +32,6 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
                 className="h-full w-full"
                 zoomControl={false}
             >
-                {/* DEFAULT */}
-                {/*<TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />*/}
-                {/* DARK */}
-                {/*<TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://api.maptiler.com/maps/streets-v4-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK"
-                />*/}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url={
@@ -51,8 +45,37 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
                 />
                 <MapClick lat={lat} lon={lon} onMapClick={onMapClick} />
                 <Marker position={[lat, lon]} />
-                <ZoomControl position="topright" />
+                <CustomZoomControl />
             </MapContainer>
+        </div>
+    );
+}
+
+function CustomZoomControl() {
+    const map = useMap();
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (containerRef.current) {
+            L.DomEvent.disableClickPropagation(containerRef.current);
+        }
+    }, []);
+
+    return (
+        <div
+            ref={containerRef}
+            className="absolute top-5 right-5 z-1000 flex cursor-pointer flex-col overflow-hidden rounded-sm bg-background shadow-lg"
+        >
+            <button onClick={() => map.zoomIn()} className="cursor-pointer p-2 transition-colors">
+                <HugeiconsIcon strokeWidth={2} icon={PlusSignIcon} size={18} />
+            </button>
+            <div className="border-t border-border/50 hover:bg-background/80" />
+            <button
+                onClick={() => map.zoomOut()}
+                className="cursor-pointer p-2 transition-colors hover:bg-background/80"
+            >
+                <HugeiconsIcon strokeWidth={2} icon={MinusSignIcon} size={18} />
+            </button>
         </div>
     );
 }
@@ -69,10 +92,19 @@ function MapClick({
     const map = useMap();
 
     map.panTo([lat, lon]);
-    map.on("click", function (e) {
-        const { lat: latVal, lng: lonVal } = e.latlng;
-        onMapClick(latVal, lonVal);
-    });
+
+    const stableOnMapClick = useCallback(onMapClick, [onMapClick]);
+
+    useEffect(() => {
+        function handleClick(e: L.LeafletMouseEvent) {
+            stableOnMapClick(e.latlng.lat, e.latlng.lng);
+        }
+
+        map.on("click", handleClick);
+        return () => {
+            map.off("click", handleClick);
+        };
+    }, [map, stableOnMapClick]);
 
     return null;
 }

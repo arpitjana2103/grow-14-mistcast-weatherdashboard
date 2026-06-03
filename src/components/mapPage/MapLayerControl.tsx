@@ -38,7 +38,7 @@ export default function MapLayerControl({
 }) {
     return (
         <TooltipProvider>
-            <ul className="flex w-fit gap-0 overflow-hidden rounded-md border-3 border-orange-500 bg-orange-500 dark:border-blue-500 dark:bg-blue-500">
+            <ul className="flex w-fit gap-[0.2rem] overflow-hidden rounded-md border-3 border-orange-500 bg-orange-500 shadow-2xl dark:border-blue-500 dark:bg-blue-500">
                 {(Object.keys(layersIcon) as TMapLayers[]).map((layer) => (
                     <Tooltip key={layer}>
                         <TooltipTrigger asChild>
@@ -51,7 +51,7 @@ export default function MapLayerControl({
                                 )}
                                 onClick={() => onSelectLayer(layer)}
                             >
-                                <HugeiconsIcon size={21} icon={layersIcon[layer]} />
+                                <HugeiconsIcon size={18} icon={layersIcon[layer]} />
                             </li>
                         </TooltipTrigger>
                         <TooltipContent
