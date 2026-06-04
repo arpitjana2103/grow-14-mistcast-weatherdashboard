@@ -73,8 +73,8 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                 className,
             )}
         >
-            <div className={cn("bg-background p-3 rounded-md ")}>
-                <div className="flex flex-col text-secondary-foreground">
+            <div className={cn(" dark:bg-slate-50 bg-slate-950 p-3 rounded-md ")}>
+                <div className="flex flex-col text-slate-400 dark:text-slate-500">
                     <span className="text-sm">
                         <HugeiconsIcon
                             icon={Time01Icon}
@@ -99,12 +99,12 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                         className="align-end block h-12 w-12 text-primary"
                     />
                     <span className="flex flex-col">
-                        <span className="border-b border-border text-lg text-primary">
+                        <span className="border-b border-slate-600 text-lg text-primary dark:border-slate-400">
                             {Math.round(temperature!)}
                             {tempUnit}
                         </span>
 
-                        <span className="block pt-0.5 text-base text-secondary-foreground">
+                        <span className="block pt-0.5 text-base text-slate-400 dark:text-slate-500">
                             {Math.round(feelsLike!)}
                             {tempUnit}
                         </span>
@@ -112,7 +112,7 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                 </div>
 
                 <span>
-                    <span className="flex items-end gap-3">
+                    <span className="flex items-end gap-3 text-slate-100 dark:text-slate-700">
                         <span className="text-base">{description}</span>
                     </span>
                     <span></span>

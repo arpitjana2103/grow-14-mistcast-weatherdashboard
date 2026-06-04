@@ -2,6 +2,7 @@ import { FullScreenIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useRef, useState } from "react";
 
+import { useLocalStorageState } from "@/hooks/useLocalStorage";
 import { cn } from "@/lib/utils";
 
 import { LeafletMap } from "./LeafletMap";
@@ -11,7 +12,8 @@ import WeatherCardOnMap from "./WeatherCardOnMap";
 
 export default function MapLayout({ className }: { className?: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [currentlayer, setCurrentLayer] = useState<TMapLayers>("search");
+    const [currentlayer, setCurrentLayer] = useLocalStorageState<TMapLayers>("mapLayer", "search");
+    // const [currentlayer, setCurrentLayer] = useState<TMapLayers>("search");
 
     function onSelectLayer(layer: TMapLayers) {
         setCurrentLayer(layer);

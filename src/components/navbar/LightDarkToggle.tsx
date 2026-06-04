@@ -4,27 +4,17 @@ import { CloudSun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/contexts/theme.context";
 
 export default function LightDarkToggle() {
-    const [isDark, setIsDark] = useState(function () {
-        const storedMode = localStorage.getItem("theme");
-        if (storedMode) return storedMode === "dark";
-        else return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    });
+    const { theme, handleThemeToggle } = useTheme();
+    const isDark = theme === "dark";
 
-    useEffect(() => {
-        document.documentElement.classList.toggle("dark", isDark);
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-    }, [isDark]);
-
-    function handleToggle() {
-        setIsDark(!isDark);
-    }
     return (
         <div>
             <Button
                 className="h-10 w-10 cursor-pointer rounded-full bg-primary transition-colors"
-                onClick={handleToggle}
+                onClick={handleThemeToggle}
             >
                 {!isDark && (
                     <CloudSun

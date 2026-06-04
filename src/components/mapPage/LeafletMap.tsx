@@ -7,11 +7,13 @@ import { useCallback, useEffect, useRef } from "react";
 import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 
 import { useLocationContext } from "@/contexts/location.context";
+import { useTheme } from "@/contexts/theme.context";
 import { cn } from "@/lib/utils";
 import { useLocationByLatLng } from "@/queries/locations.query";
 import { API_KEY as OPENWEATHERMAP_API_KEY } from "@/services/weather.service";
 
 export function LeafletMap({ className, mapLayer }: { className?: string; mapLayer: TMapLayers }) {
+    const { theme } = useTheme();
     const { currentLocation, setCurrentLocation } = useLocationContext();
     const lat = Number(currentLocation?.lat) || 0;
     const lon = Number(currentLocation?.lon) || 0;
@@ -23,26 +25,31 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
         setCurrentLocation(data);
     }
 
+    const lightMapLayer =
+        "https://api.maptiler.com/maps/openstreetmap/256/{z}/{x}/{y}@2x.jpg?key=RqBinbOIimuU9Q9zXtXK";
+    const darkMapLayer =
+        "https://api.maptiler.com/maps/openstreetmap-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK";
+    const baseMapLayer = theme === "dark" || mapLayer !== "search" ? darkMapLayer : lightMapLayer;
+
     return (
         <div className={cn("rounded-md overflow-hidden", className)}>
             <MapContainer
                 center={[lat, lon]}
-                zoom={6}
+                zoom={7}
                 scrollWheelZoom={true}
                 className="h-full w-full"
                 zoomControl={false}
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url={
-                        mapLayer === "search"
-                            ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            : "https://api.maptiler.com/maps/openstreetmap-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK"
-                    }
+                    url={baseMapLayer}
                 />
-                <TileLayer
-                    url={`https://tile.openweathermap.org/map/${mapLayer}/{z}/{x}/{y}.png?appid=${OPENWEATHERMAP_API_KEY}`}
-                />
+                {mapLayer !== "search" && (
+                    <TileLayer
+                        url={`https://tile.openweathermap.org/map/${mapLayer}/{z}/{x}/{y}.png?appid=${OPENWEATHERMAP_API_KEY}`}
+                        opacity={1}
+                    />
+                )}
                 <MapClick lat={lat} lon={lon} onMapClick={onMapClick} />
                 <Marker position={[lat, lon]} />
                 <CustomZoomControl />

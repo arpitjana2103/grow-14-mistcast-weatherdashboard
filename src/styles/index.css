@@ -57,6 +57,16 @@
     }
 }
 
+/* Leaflet Dark Mode */
+
+/*.dark .leaflet-layer,
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out,
+.dark .leaflet-control-attribution {
+    opacity: 0.5;
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}*/
+
 /* Customize Leaflet z-index */
 .leaflet-bottom.leaflet-right {
     z-index: 800 !important;
