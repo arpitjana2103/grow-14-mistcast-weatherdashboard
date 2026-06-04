@@ -1,6 +1,6 @@
 import { FullScreenIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { useLocalStorageState } from "@/hooks/useLocalStorage";
 import { cn } from "@/lib/utils";

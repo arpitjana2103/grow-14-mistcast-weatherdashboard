@@ -1,6 +1,8 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { useMemo, useState, createContext, useContext } from "react";
+import { useMemo, createContext, useContext } from "react";
+
+import { useLocalStorageState } from "@/hooks/useLocalStorage";
 
 export type TUnit = "metric" | "imperial";
 
@@ -16,13 +18,14 @@ type UnitProviderProps = {
 };
 
 export const UnitProvider = function ({ children }: UnitProviderProps) {
-    const [unit, setUnit] = useState<TUnit>("metric");
+    // const [unit, setUnit] = useState<TUnit>("metric");
+    const [unit, setUnit] = useLocalStorageState<TUnit>("unit", "metric");
 
     const value = useMemo(
         function () {
             return { unit, setUnit };
         },
-        [unit],
+        [unit, setUnit],
     );
 
     return <UnitContext.Provider value={value}>{children}</UnitContext.Provider>;

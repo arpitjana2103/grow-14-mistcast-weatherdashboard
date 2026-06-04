@@ -16,7 +16,7 @@ export default function Time({
     });
     const { fullDate, weekDay, timezoneOffset, hour12, minute, period } = timeDetails;
     return (
-        <div className={cn("flex flex-col text-right text-secondary-foreground", className)}>
+        <div className={cn("flex flex-col text-secondary-foreground", className)}>
             <span className="text-sm">{`${hour12}:${minute} ${period.toLocaleLowerCase()} (${timezoneOffset})`}</span>
             <span className="text-sm">{`${weekDay}, ${fullDate}`}</span>
         </div>

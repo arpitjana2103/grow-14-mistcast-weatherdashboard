@@ -23,30 +23,38 @@ export default function CurrentWeatherCard() {
     const feelsLike = data?.current.feels_like;
     const utcTimestampInSeconds = data?.current.dt || 0;
     const timezone = data?.timezone || "";
+    const wind_speed = data?.current.wind_speed;
+    const wind_deg = data?.current.wind_deg;
+    const humidity = data?.current.humidity;
+    const visibility = data?.current.visibility;
+    const pressure = data?.current.pressure;
+    const dewPoint = data?.current.dew_point;
 
     if (isFetching) return <div>Loading...</div>;
 
     return (
-        <div className="rounded-md bg-linear-to-bl from-orange-500 to-orange-200 p-2 shadow-2xl sm:p-3 dark:from-blue-500 dark:to-blue-950">
+        <div className="max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400">
             <div
                 className={cn(
-                    "grid gap-2 sm:gap-3",
-                    "h-124 grid-cols-1 grid-rows-2",
-                    "smmd:grid-cols-[15rem_auto_auto] smmd:grid-rows-2",
-                    "mdlg:h-64 mdlg:grid-cols-[16rem_auto_16rem] mdlg:grid-rows-1",
+                    "grid gap-2",
+                    "grid-cols-1 grid-rows-2",
+                    "sm:gap-3",
+                    "md:grid-cols-[15rem_auto_auto]",
+                    "lg:h-64 lg:grid-cols-[16rem_auto_16rem] lg:grid-rows-1",
                 )}
             >
-                <ImageOverlay icon={icon!} className="w-full smmd:aspect-square" />
+                <ImageOverlay icon={icon!} className="w-full md:aspect-square" />
                 <div
                     className={cn(
-                        "smmd:col-span-2 smmd:col-start-2 bg-background rounded-md p-3",
-                        "mdlg:col-span-1 relative",
+                        "bg-background/95 rounded-md p-3 flex flex-col",
+                        "md:col-span-2 md:col-start-2 ",
+                        "lg:col-span-1 relative",
                     )}
                 >
                     <Time
                         utcTimestampInSeconds={utcTimestampInSeconds}
                         timezone={timezone}
-                        className="absolute right-3"
+                        className="mb-4"
                     />
                     <CurrentWeatherDetails
                         icon={icon!}
@@ -54,6 +62,13 @@ export default function CurrentWeatherCard() {
                         temperature={temperature!}
                         feelsLike={feelsLike!}
                         description={description!}
+                        wind_speed={wind_speed!}
+                        wind_deg={wind_deg!}
+                        humidity={humidity!}
+                        visibility={visibility!}
+                        pressure={pressure!}
+                        dew_point={dewPoint!}
+                        className="grow"
                     />
                 </div>
                 <MiniMap
@@ -61,8 +76,8 @@ export default function CurrentWeatherCard() {
                     lon={Number(currentLocation?.lon || 0)}
                     className={cn(
                         "w-full aspect-square, col-span-3",
-                        "mdlg:col-span-1",
-                        "hidden smmd:block",
+                        "lg:col-span-1",
+                        "hidden md:block",
                     )}
                 />
             </div>

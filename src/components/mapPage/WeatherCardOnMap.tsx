@@ -69,7 +69,7 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
     return (
         <div
             className={cn(
-                "w-[18rem] rounded-md bg-linear-to-bl to-orange-500 from-orange-200/70 p-2 shadow-2xl  dark:to-blue-500 dark:from-blue-950/70",
+                "w-[18rem] rounded-md bg-linear-to-bl to-orange-500 from-orange-200 p-2 shadow-2xl  dark:to-blue-400 dark:from-blue-800",
                 className,
             )}
         >
