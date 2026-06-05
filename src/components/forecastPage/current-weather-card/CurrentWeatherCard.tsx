@@ -36,6 +36,7 @@ export default function CurrentWeatherCard() {
         <div className="max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400">
             <div
                 className={cn(
+                    "w-full",
                     "grid gap-2",
                     "grid-cols-1 grid-rows-2",
                     "sm:gap-3",
@@ -43,9 +44,10 @@ export default function CurrentWeatherCard() {
                     "lg:h-64 lg:grid-cols-[16rem_auto_16rem] lg:grid-rows-1",
                 )}
             >
-                <ImageOverlay icon={icon!} className="w-full md:aspect-square" />
+                <ImageOverlay icon={icon!} className="h-full w-full md:aspect-square" />
                 <div
                     className={cn(
+                        "w-full  min-w-0",
                         "bg-background/95 rounded-md p-3 flex flex-col",
                         "md:col-span-2 md:col-start-2 ",
                         "lg:col-span-1 relative",
@@ -68,7 +70,6 @@ export default function CurrentWeatherCard() {
                         visibility={visibility!}
                         pressure={pressure!}
                         dew_point={dewPoint!}
-                        className="grow"
                     />
                 </div>
                 <MiniMap

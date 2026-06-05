@@ -44,7 +44,7 @@ export default function ImageOverlay({
             <img
                 src={`/images/${icon}.jpg`}
                 alt={weatherImageDescription[icon]}
-                className="absolute inset-0 h-auto w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
             />
 
             {/* Dark gradient overlay (transparent → black, bottom-heavy) */}

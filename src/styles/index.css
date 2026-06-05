@@ -55,6 +55,15 @@
     .text-secondary {
         @apply text-secondary-foreground/80;
     }
+
+    .lite-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(2, 6, 24, 0.2) transparent;
+    }
+
+    .dark .lite-scrollbar {
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
 }
 
 /* Leaflet Dark Mode */

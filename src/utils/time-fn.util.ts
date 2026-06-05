@@ -1,6 +1,7 @@
 import { formatInTimeZone } from "date-fns-tz";
 
 export type TTimeDetails = {
+    dt: number;
     /** e.g. "28 May 2026" */
     fullDate: string;
     /** e.g. "10:38 AM" */
@@ -33,6 +34,12 @@ export type TTimeDetails = {
     timezone: string;
     /** Abbreviated timezone, e.g. "IST" */
     timezoneOffset: string;
+    /** ISO 8601 string with timezone offset, e.g. "2026-05-28T10:38:00+05:30" */
+    ISOString: string;
+    /** true if this timestamp falls on today's date in the given timezone */
+    isToday: boolean;
+    /** true if this timestamp falls on tomorrow's date in the given timezone */
+    isTomorrow: boolean;
 };
 
 export function getTimeDetails({
@@ -43,8 +50,16 @@ export function getTimeDetails({
     timezone: string;
 }): TTimeDetails {
     const date = new Date(utcTimestampInSeconds * 1000);
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
+
+    const dateKey = formatInTimeZone(date, timezone, "yyyy-MM-dd");
+    const todayKey = formatInTimeZone(now, timezone, "yyyy-MM-dd");
+    const tomorrowKey = formatInTimeZone(tomorrow, timezone, "yyyy-MM-dd");
 
     return {
+        dt: utcTimestampInSeconds,
         fullDate: formatInTimeZone(date, timezone, "dd MMMM yyyy"),
         fullTime12: formatInTimeZone(date, timezone, "h:mm a"),
         fullTime24: formatInTimeZone(date, timezone, "HH:mm"),
@@ -61,7 +76,8 @@ export function getTimeDetails({
         period: formatInTimeZone(date, timezone, "a"),
         timezone: timezone,
         timezoneOffset: formatInTimeZone(date, timezone, "zzz"),
+        ISOString: formatInTimeZone(date, timezone, "yyyy-MM-dd'T'HH:mm:ssxxx"),
+        isToday: dateKey === todayKey,
+        isTomorrow: dateKey === tomorrowKey,
     };
 }
-
-console.log(getTimeDetails({ utcTimestampInSeconds: 1779939687, timezone: "Asia/Kolkata" }));

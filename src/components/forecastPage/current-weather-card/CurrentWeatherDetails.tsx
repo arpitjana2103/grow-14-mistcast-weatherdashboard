@@ -65,7 +65,7 @@ export default function CurrentWeatherDetails({
     ];
 
     return (
-        <div className={cn(" flex flex-col justify-between gap-6", className)}>
+        <div className={cn("flex flex-col justify-between gap-6", className)}>
             <div className="flex items-center gap-3">
                 <WeatherIcons
                     type={icon}
@@ -88,29 +88,31 @@ export default function CurrentWeatherDetails({
                     </span>
                 </span>
             </div>
-            <div className="flex flex-wrap gap-1">
-                {wData.map((item) => (
-                    <div
-                        key={item.name}
-                        className="flex min-w-22 flex-col rounded-sm border border-primary/20 bg-primary/10 p-2 shadow-2xs last:hidden xs:last:block smmd:last:hidden lg:last:hidden lgxl:last:block"
-                    >
-                        <span className="mb-1 flex items-center gap-1 text-sm text-primary">
-                            <HugeiconsIcon icon={item.icon} className="h-4 w-4" />
-                            <span>{item.name}</span>
-                            {item.name === "Wind" && (
-                                <HugeiconsIcon
-                                    className={`h-4 w-4 text-foreground`}
-                                    style={{ transform: `rotate(${item.wind_deg!}deg)` }}
-                                    icon={ArrowUpBigIcon}
-                                    strokeWidth={2}
-                                />
-                            )}
-                        </span>
-                        <span className="text-base text-foreground">
-                            {item.val} {item.unit}
-                        </span>
-                    </div>
-                ))}
+            <div className="lite-scrollbar w-full overflow-x-auto" style={{}}>
+                <div className="flex gap-1">
+                    {wData.map((item) => (
+                        <div
+                            key={item.name}
+                            className="flex w-fit flex-none flex-col rounded-sm border border-primary/20 bg-primary/20 p-2 shadow-2xs"
+                        >
+                            <span className="mb-1 flex items-center gap-1 text-sm text-primary">
+                                <HugeiconsIcon icon={item.icon} className="h-4 w-4" />
+                                <span>{item.name}</span>
+                                {item.name === "Wind" && (
+                                    <HugeiconsIcon
+                                        className={`h-4 w-4 text-foreground`}
+                                        style={{ transform: `rotate(${item.wind_deg!}deg)` }}
+                                        icon={ArrowUpBigIcon}
+                                        strokeWidth={2}
+                                    />
+                                )}
+                            </span>
+                            <span className="text-base text-foreground">
+                                {item.val} {item.unit}
+                            </span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
