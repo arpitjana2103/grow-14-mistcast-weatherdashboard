@@ -3,8 +3,10 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Suspense, useRef } from "react";
 
 import { useLocalStorageState } from "@/hooks/useLocalStorage";
+import { useLocationContext } from "@/contexts/location.context";
 import { cn } from "@/lib/utils";
 
+import { ErrorBoundary } from "../ErrorBoundary";
 import { LeafletMap } from "./LeafletMap";
 import MapLayerControl, { type TMapLayers } from "./MapLayerControl";
 import MapLegend from "./MapLegend";
@@ -13,6 +15,8 @@ import WeatherCardOnMap, { WeatherCardOnMapSkeleton } from "./WeatherCardOnMap";
 export default function MapLayout({ className }: { className?: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentlayer, setCurrentLayer] = useLocalStorageState<TMapLayers>("mapLayer", "search");
+    const { currentLatlng } = useLocationContext();
+    const latlngKey = currentLatlng.join(",");
 
     function onSelectLayer(layer: TMapLayers) {
         setCurrentLayer(layer);
@@ -31,9 +35,11 @@ export default function MapLayout({ className }: { className?: string }) {
         <div ref={containerRef} className={cn("relative", className)}>
             <LeafletMap className={cn("w-full h-full")} mapLayer={currentlayer} />
             <div className="absolute top-5 left-5 z-1000 flex flex-col items-start gap-3">
-                <Suspense fallback={<WeatherCardOnMapSkeleton />}>
-                    <WeatherCardOnMap />
-                </Suspense>
+                <ErrorBoundary fallback={<WeatherCardOnMapSkeleton error={true} />} resetKey={latlngKey}>
+                    <Suspense fallback={<WeatherCardOnMapSkeleton />}>
+                        <WeatherCardOnMap />
+                    </Suspense>
+                </ErrorBoundary>
                 <MapLayerControl currentlayer={currentlayer} onSelectLayer={onSelectLayer} />
             </div>
             {currentlayer !== "search" && (

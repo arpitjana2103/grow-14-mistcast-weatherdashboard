@@ -21,6 +21,7 @@
 
         "react/react-in-jsx-scope": "off",
         "react/only-export-components": "off",
+        "react/no-array-index-key": "off",
 
         "import/no-unassigned-import": "off",
         "unicorn/filename-case": "off",
