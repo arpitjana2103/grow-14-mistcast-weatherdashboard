@@ -1,5 +1,3 @@
-import type { TLocationData } from "@/schemas/location.schema";
-
 import { Location01Icon, Time01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect } from "react";
@@ -7,17 +5,19 @@ import { NavLink } from "react-router";
 
 import { useLocationContext } from "@/contexts/location.context";
 import { useUnitContext, WeatherUnits } from "@/contexts/unit.context";
-import { cn } from "@/lib/utils";
+import { cn, generateAddressStr } from "@/lib/utils";
 import { useLocationLatLng } from "@/queries/locations.query";
 import { useWeatherQuery } from "@/queries/weather.query";
 import { getTimeDetails } from "@/utils/time-fn.util";
 
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 import WeatherIcons from "../WeatherIcons";
 
 export default function WeatherCardOnMap({ className }: { className?: string }) {
     const { currentLocation, currentLatlng, handleSetCurrentLocation } = useLocationContext();
     const _address = generateAddressStr(currentLocation);
+    const address = _address.substring(0, 50) + (_address.length > 50 ? "..." : "");
     const [lat, lng] = currentLatlng;
 
     const { data: latLngLocation } = useLocationLatLng([lat, lng]);
@@ -64,7 +64,12 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                 className,
             )}
         >
-            <div className={cn(" dark:bg-slate-50 bg-slate-950 p-3 rounded-md ")}>
+            <div
+                className={cn(
+                    " dark:bg-slate-50 bg-slate-950 p-3 rounded-md",
+                    "animate-[fade-in_0s_ease-out_forwards]",
+                )}
+            >
                 <div className="flex flex-col text-slate-400 dark:text-slate-500">
                     <span className="text-sm">
                         <HugeiconsIcon
@@ -79,7 +84,7 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                                 icon={Location01Icon}
                                 className="absolute mr-1 inline w-4 translate-y-[-0.2rem]"
                             />
-                            &#160;&#160;&#160;&#160;&#160;&#160;{_address}
+                            &#160;&#160;&#160;&#160;&#160;&#160;{address}
                         </span>
                     </span>
                 </div>
@@ -121,37 +126,40 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
     );
 }
 
-function generateAddressStr(location: TLocationData) {
-    const { display_place, address } = location;
-    const {
-        state,
-        country,
-        postcode,
-        quarter,
-        city,
-        municipality,
-        state_district,
-        region,
-        town,
-        road,
-        county,
-    } = address ?? {};
-    const _address = [
-        display_place,
-        road,
-        quarter,
-        city,
-        town,
-        municipality,
-        county,
-        state_district,
-        region,
-        state,
-        postcode,
-        country,
-    ]
-        .filter(Boolean)
-        .join(", ");
+export function WeatherCardOnMapSkeleton({ className }: { className?: string }) {
+    return (
+        <div
+            className={cn(
+                "w-[18rem] rounded-md bg-linear-to-bl to-orange-500 from-orange-200 p-2 shadow-2xl dark:to-blue-400 dark:from-blue-800 ",
+                className,
+            )}
+        >
+            <div className="h-[207px] rounded-md bg-slate-950 p-3 dark:bg-slate-50">
+                {/* Time row */}
+                <div className="flex flex-col gap-2 text-slate-400 dark:text-slate-500">
+                    <Skeleton className="h-4 w-40 bg-slate-700 dark:bg-slate-300" />
 
-    return _address;
+                    {/* Location row */}
+                    <Skeleton className="h-8 w-full bg-slate-700 dark:bg-slate-300" />
+                </div>
+
+                {/* Icon + temperature block */}
+                <div className="mt-2 flex items-center gap-3">
+                    <Skeleton className="h-12 w-12 rounded-full bg-slate-700 dark:bg-slate-300" />
+                    <span className="flex flex-col gap-1">
+                        <Skeleton className="h-6 w-12 bg-slate-700 dark:bg-slate-300" />
+                        <Skeleton className="h-6 w-12 bg-slate-700 dark:bg-slate-300" />
+                    </span>
+                </div>
+
+                {/* Description */}
+                <Skeleton className="mt-2 h-6 w-32 bg-slate-700 dark:bg-slate-300" />
+
+                {/* Button */}
+                <div className="flex justify-end">
+                    <Skeleton className="mt-4 h-8 w-30 rounded-md bg-slate-700 dark:bg-slate-300" />
+                </div>
+            </div>
+        </div>
+    );
 }

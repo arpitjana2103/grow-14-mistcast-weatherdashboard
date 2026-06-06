@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { LeafletMap } from "./LeafletMap";
 import MapLayerControl, { type TMapLayers } from "./MapLayerControl";
 import MapLegend from "./MapLegend";
-import WeatherCardOnMap from "./WeatherCardOnMap";
+import WeatherCardOnMap, { WeatherCardOnMapSkeleton } from "./WeatherCardOnMap";
 
 export default function MapLayout({ className }: { className?: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ export default function MapLayout({ className }: { className?: string }) {
         <div ref={containerRef} className={cn("relative", className)}>
             <LeafletMap className={cn("w-full h-full")} mapLayer={currentlayer} />
             <div className="absolute top-5 left-5 z-1000 flex flex-col items-start gap-3">
-                <Suspense fallback={<div className="bg-green-600">Loading Weather Mapcard...</div>}>
+                <Suspense fallback={<WeatherCardOnMapSkeleton />}>
                     <WeatherCardOnMap />
                 </Suspense>
                 <MapLayerControl currentlayer={currentlayer} onSelectLayer={onSelectLayer} />

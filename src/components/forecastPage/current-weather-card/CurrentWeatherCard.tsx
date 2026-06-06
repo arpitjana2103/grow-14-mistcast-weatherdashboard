@@ -44,7 +44,7 @@ export default function CurrentWeatherCard() {
                     "lg:h-64 lg:grid-cols-[16rem_auto_16rem] lg:grid-rows-1",
                 )}
             >
-                <ImageOverlay icon={icon!} className="h-full w-full md:aspect-square" />
+                <ImageOverlay icon={icon} className="h-full w-full md:aspect-square" />
                 <div
                     className={cn(
                         "w-full  min-w-0",
@@ -59,17 +59,17 @@ export default function CurrentWeatherCard() {
                         className="mb-4"
                     />
                     <CurrentWeatherDetails
-                        icon={icon!}
+                        icon={icon}
                         unitType={unitType}
-                        temperature={temperature!}
-                        feelsLike={feelsLike!}
-                        description={description!}
-                        wind_speed={wind_speed!}
-                        wind_deg={wind_deg!}
-                        humidity={humidity!}
-                        visibility={visibility!}
-                        pressure={pressure!}
-                        dew_point={dewPoint!}
+                        temperature={temperature}
+                        feelsLike={feelsLike}
+                        description={description}
+                        wind_speed={wind_speed}
+                        wind_deg={wind_deg}
+                        humidity={humidity}
+                        visibility={visibility}
+                        pressure={pressure}
+                        dew_point={dewPoint}
                     />
                 </div>
                 <MiniMap
