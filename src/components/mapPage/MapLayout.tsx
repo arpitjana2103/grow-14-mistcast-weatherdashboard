@@ -1,6 +1,6 @@
 import { FullScreenIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 
 import { useLocalStorageState } from "@/hooks/useLocalStorage";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,6 @@ import WeatherCardOnMap from "./WeatherCardOnMap";
 export default function MapLayout({ className }: { className?: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentlayer, setCurrentLayer] = useLocalStorageState<TMapLayers>("mapLayer", "search");
-    // const [currentlayer, setCurrentLayer] = useState<TMapLayers>("search");
 
     function onSelectLayer(layer: TMapLayers) {
         setCurrentLayer(layer);
@@ -32,7 +31,9 @@ export default function MapLayout({ className }: { className?: string }) {
         <div ref={containerRef} className={cn("relative", className)}>
             <LeafletMap className={cn("w-full h-full")} mapLayer={currentlayer} />
             <div className="absolute top-5 left-5 z-1000 flex flex-col items-start gap-3">
-                <WeatherCardOnMap />
+                <Suspense fallback={<div className="bg-green-600">Loading Weather Mapcard...</div>}>
+                    <WeatherCardOnMap />
+                </Suspense>
                 <MapLayerControl currentlayer={currentlayer} onSelectLayer={onSelectLayer} />
             </div>
             {currentlayer !== "search" && (

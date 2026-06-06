@@ -20,11 +20,12 @@ export default function LocationSearch() {
 
     // --- Search Query: input value → debounce → fetch results ---
     const [query, setQuery] = useState("");
+    const [hasInput, setHasInput] = useState(false);
     const debouncedQuery = useDebounce(query.toLocaleLowerCase(), 600);
     const { data: fetchedLocations = [], isFetching } = useLocationSearchQuery(debouncedQuery);
 
     // --- Location Selection: save picked location, fall back to saved list ---
-    const { currentLocation, setCurrentLocation } = useLocationContext();
+    const { currentLocation, handleSetCurrentLocation } = useLocationContext();
     const { savedLocations, handleSaveLocation } = useLocationsCache();
     const savedLocationsArr = Array.from(savedLocations.values()).toReversed();
 
@@ -46,6 +47,7 @@ export default function LocationSearch() {
             if (inputRef.current) {
                 if (inputRef.current.value !== currentLocation?.display_place) {
                     inputRef.current.value = "";
+                    setHasInput(false);
                 }
             }
         },
@@ -59,10 +61,11 @@ export default function LocationSearch() {
         }
 
         if (inputRef.current) {
-            inputRef.current.value = location.display_place!;
+            inputRef.current.value = location.display_place || "";
         }
+        setHasInput(!!location.display_place);
 
-        setCurrentLocation(location);
+        handleSetCurrentLocation(location);
         setPopverOpen(false);
     }
 
@@ -71,6 +74,7 @@ export default function LocationSearch() {
         if (inputRef.current) {
             inputRef.current.value = "";
         }
+        setHasInput(false);
     }
 
     return (
@@ -80,7 +84,10 @@ export default function LocationSearch() {
                     ref={inputRef}
                     placeholder="Search for location"
                     defaultValue={""}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => {
+                        setQuery(e.target.value);
+                        setHasInput(e.target.value !== "");
+                    }}
                     onFocus={() => setPopverOpen(true)}
                     className="text-base placeholder:text-muted-foreground md:text-base"
                 />
@@ -89,7 +96,7 @@ export default function LocationSearch() {
                         {isFetching ? <Spinner /> : <Search size={18} strokeWidth={2} />}
                     </div>
                 </InputGroupAddon>
-                {inputRef.current?.value && (
+                {hasInput && (
                     <button
                         onClick={handleClearInput}
                         className="absolute top-[0.46rem] right-[0.46rem] z-1000 flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm bg-input"

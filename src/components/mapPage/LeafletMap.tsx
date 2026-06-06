@@ -9,20 +9,15 @@ import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import { useLocationContext } from "@/contexts/location.context";
 import { useTheme } from "@/contexts/theme.context";
 import { cn } from "@/lib/utils";
-import { useLocationByLatLng } from "@/queries/locations.query";
 import { API_KEY as OPENWEATHERMAP_API_KEY } from "@/services/weather.service";
 
 export function LeafletMap({ className, mapLayer }: { className?: string; mapLayer: TMapLayers }) {
     const { theme } = useTheme();
-    const { currentLocation, setCurrentLocation } = useLocationContext();
-    const lat = Number(currentLocation?.lat) || 0;
-    const lon = Number(currentLocation?.lon) || 0;
-
-    const { fetchLocationByLatLng } = useLocationByLatLng();
+    const { currentLatlng, handleSetCurrentLatlng } = useLocationContext();
+    const [lat, lon] = currentLatlng;
 
     async function onMapClick(latVal: number, lonVal: number) {
-        const data = await fetchLocationByLatLng(latVal, lonVal);
-        setCurrentLocation(data);
+        handleSetCurrentLatlng([latVal, lonVal]);
     }
 
     const lightMapLayer =
@@ -35,7 +30,7 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
         <div className={cn("rounded-md overflow-hidden", className)}>
             <MapContainer
                 center={[lat, lon]}
-                zoom={7}
+                zoom={12}
                 scrollWheelZoom={true}
                 className="h-full w-full"
                 zoomControl={false}

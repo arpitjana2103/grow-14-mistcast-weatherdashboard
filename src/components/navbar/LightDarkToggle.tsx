@@ -1,7 +1,6 @@
 import { MoonFastWindIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CloudSun } from "lucide-react";
-import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/theme.context";
