@@ -17,7 +17,9 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
     const [lat, lon] = currentLatlng;
 
     async function onMapClick(latVal: number, lonVal: number) {
-        handleSetCurrentLatlng([latVal, lonVal]);
+        const normalizedLon = L.Util.wrapNum(lonVal, [-180, 180], true);
+        console.log("onMapClick normalizedLon -- ", latVal, lonVal, normalizedLon);
+        handleSetCurrentLatlng([latVal, normalizedLon]);
     }
 
     const lightMapLayer =
