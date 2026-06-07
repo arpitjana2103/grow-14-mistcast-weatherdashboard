@@ -9,6 +9,7 @@ import LightDarkToggle from "./LightDarkToggle";
 import LocationSearch from "./LocationSearch";
 import Nav from "./Nav";
 import UnitSystemToggle from "./UnitSystemToggle";
+import UserLocationBtn from "./UserLocationBtn";
 
 export default function NavBar({ className }: { className?: string }) {
     return (
@@ -17,13 +18,14 @@ export default function NavBar({ className }: { className?: string }) {
                 <Container>
                     <div className="flex flex-col items-center justify-between gap-4 py-4 mdlg:flex-row">
                         <div>
-                            <NavLink to="/">
+                            <NavLink to="/forecast">
                                 <Logo />
                             </NavLink>
                         </div>
 
                         <ul className="flex flex-col items-center gap-2 md:flex-row md:gap-5">
-                            <li>
+                            <li className="flex items-center gap-1">
+                                <UserLocationBtn />
                                 <LocationSearch />
                             </li>
                             <div className="flex items-center justify-between gap-2 sm:flex-row">
