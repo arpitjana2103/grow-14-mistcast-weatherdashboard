@@ -145,7 +145,7 @@ function ComponentSkeleton({ className }: { className?: string }) {
                 className,
             )}
         >
-            <div className={cn("h-[207px] rounded-md bg-slate-950 p-3 dark:bg-slate-50")}>
+            <div className={cn("h-55.4 rounded-md bg-slate-950 p-3 dark:bg-slate-50")}>
                 {/* Time row */}
                 <div className="flex flex-col gap-2 text-slate-400 dark:text-slate-500">
                     <Skeleton className="h-4 w-40 bg-slate-700 dark:bg-slate-300" />

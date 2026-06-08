@@ -36,7 +36,7 @@
 
 @layer base {
     html {
-        @apply text-[14px] xs:text-[15px];
+        @apply text-[13px] xs:text-[14px];
     }
     * {
         @apply border-border outline-ring/50;

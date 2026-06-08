@@ -23,7 +23,7 @@ export function useLocationLatLng([lat, lng]: [number, number]) {
     return useSuspenseQuery<TLocationData>({
         queryKey: ["location", lat, lng],
         queryFn: () => getLocationByLatLon(lat, lng),
-        staleTime: 1000 * 60 * 5,
+        staleTime: 1000 * 60 * 10,
         retry: false,
     });
 }

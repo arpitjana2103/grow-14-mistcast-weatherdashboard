@@ -18,7 +18,6 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
 
     async function onMapClick(latVal: number, lonVal: number) {
         const normalizedLon = L.Util.wrapNum(lonVal, [-180, 180], true);
-        console.log("onMapClick normalizedLon -- ", latVal, lonVal, normalizedLon);
         handleSetCurrentLatlng([latVal, normalizedLon]);
     }
 
@@ -32,7 +31,7 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
         <div className={cn("rounded-md overflow-hidden", className)}>
             <MapContainer
                 center={[lat, lon]}
-                zoom={12}
+                zoom={7}
                 scrollWheelZoom={true}
                 className="h-full w-full"
                 zoomControl={false}

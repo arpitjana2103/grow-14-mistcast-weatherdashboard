@@ -1,9 +1,11 @@
 import { LoaderCircle } from "lucide-react";
 
-export default function Spinner() {
+import { cn } from "@/lib/utils";
+
+export default function Spinner({ className }: { className?: string }) {
     return (
-        <div className="">
-            <LoaderCircle size={18} strokeWidth={2} className="animate-spin" />
+        <div>
+            <LoaderCircle className={cn("animate-spin", className)} size={18} strokeWidth={2} />
         </div>
     );
 }

@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useLocationContext } from "@/contexts/location.context";
 import { useUnitContext } from "@/contexts/unit.context";
@@ -11,8 +14,19 @@ import Time from "./Time";
 
 export default function CurrentWeatherCard() {
     const { currentLatlng } = useLocationContext();
+    const latlngKey = currentLatlng.join(",");
+    return (
+        <ErrorBoundary fallback={<ComponentSkeleton />} resetKey={latlngKey}>
+            <Suspense fallback={<ComponentSkeleton />}>
+                <Component />
+            </Suspense>
+        </ErrorBoundary>
+    );
+}
+
+function Component() {
+    const { currentLatlng } = useLocationContext();
     const [lat, lon] = currentLatlng;
-    console.log(lat, lon);
     const { unit: unitType } = useUnitContext();
     const { data: wData } = useWeatherQuery(lat, lon, unitType);
 
@@ -83,8 +97,7 @@ export default function CurrentWeatherCard() {
     );
 }
 
-export function CurrentWeatherCardSkeleton() {
-    console.log("CurrentWeatherCardSkeleton...");
+function ComponentSkeleton() {
     return (
         <div className="max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400">
             <div

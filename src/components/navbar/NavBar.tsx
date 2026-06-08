@@ -25,8 +25,8 @@ export default function NavBar({ className }: { className?: string }) {
 
                         <ul className="flex flex-col items-center gap-2 md:flex-row md:gap-5">
                             <li className="flex items-center gap-1">
-                                <UserLocationBtn />
                                 <LocationSearch />
+                                <UserLocationBtn />
                             </li>
                             <div className="flex items-center justify-between gap-2 sm:flex-row">
                                 <li>

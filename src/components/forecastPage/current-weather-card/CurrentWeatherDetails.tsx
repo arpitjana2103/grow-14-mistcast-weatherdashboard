@@ -69,7 +69,7 @@ export default function CurrentWeatherDetails({
             <div className="flex items-center gap-3">
                 <WeatherIcons
                     type={icon}
-                    strokeWidth={1}
+                    strokeWidth={0.8}
                     className="align-end block h-18 w-18 text-primary xs:h-20 xs:w-20"
                 />
                 <span>
