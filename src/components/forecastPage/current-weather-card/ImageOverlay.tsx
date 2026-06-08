@@ -49,7 +49,7 @@ export default function ImageOverlay({
         <div className={cn("relative overflow-hidden dark:border-primary rounded-md", className)}>
             {/* Background weather image */}
             <div
-                className={cn("absolute inset-0 bg-cover ...", isLoaded ? "opacity-0" : "blur-sm")}
+                className={cn("absolute inset-0 bg-cover", isLoaded ? "opacity-0" : "blur-sm")}
                 style={{ backgroundImage: `url(/images/${icon}-sm.webp)` }}
             />
 

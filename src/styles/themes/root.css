@@ -34,6 +34,18 @@ SKY 600 :  #0084d1
     --orange500: #ff6900;
     --orange400: #ff8904;
     --orange300: #ffb86a;
+    --slate950: #020618;
+    --slate900: #0f172b;
+    --slate800: #1d293d;
+    --slate700: #314158;
+    --slate600: #45556c;
+    --slate500: #62748e;
+    --slate100: #f1f5f9;
+    --slate300: #cad5e2;
+    --blue300: #8ec5ff;
+    --blue400: #51a2ff;
+    --blue500: #2b7fff;
+
     --logo-color1: var(--blue500);
     --logo-color2: var(--blue600);
 
@@ -66,14 +78,15 @@ SKY 600 :  #0084d1
     --popover-foreground: #525252;
     --primary-foreground: #1e2723;
     --secondary: #fdfdfd;
-    --muted: #ededed;
+    --muted: var(--slate300);
     --accent-foreground: #202020;
     --destructive: #ca3214;
     --destructive-foreground: #fffcfc;
 
     /*-----------------------*/
-    --chart-1: var(--orange600);
-    --chart-2: var(--orange300);
+
+    --chart-1: var(--blue600);
+    --chart-2: var(--blue400);
     --chart-3: #8b5cf6;
     --chart-4: #f59e0b;
     --chart-5: #10b981;

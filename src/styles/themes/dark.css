@@ -12,17 +12,6 @@
 */
 
 .dark {
-    --slate950: #020618;
-    --slate900: #0f172b;
-    --slate800: #1d293d;
-    --slate700: #314158;
-    --slate600: #45556c;
-    --slate500: #62748e;
-    --slate100: #f1f5f9;
-    --slate300: #cad5e2;
-    --blue300: #8ec5ff;
-    --blue500: #2b7fff;
-
     /*---------------------- COLORS ------*/
     /*
         background : background color
@@ -50,14 +39,14 @@
     --popover-foreground: #a9a9a9;
     --primary-foreground: #dde8e3;
     --secondary: #242424;
-    --muted: #1f1f1f;
+    --muted: red;
     --accent-foreground: #fafafa;
     --destructive: #541c15;
     --destructive-foreground: #ede9e8;
 
     /*-----------------------*/
-    --chart-1: var(--blue600);
-    --chart-2: var(--blue300);
+    --chart-1: var(--orange600);
+    --chart-2: var(--orange300);
     --chart-3: #a78bfa;
     --chart-4: #fbbf24;
     --chart-5: #2dd4bf;

@@ -1,10 +1,12 @@
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Button } from "@/components/ui/button";
 import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/chart";
+import { Skeleton } from "@/components/ui/skeleton";
 import WeatherIcons from "@/components/WeatherIcons";
 import { useLocationContext } from "@/contexts/location.context";
 import { useUnitContext } from "@/contexts/unit.context";
@@ -35,7 +37,7 @@ const CustomToolTip = function ({ active, payload, label }: any) {
     );
 };
 
-const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
+const CustomXTick = function ({ x, y, payload, hourlyDataMap }: any) {
     const ISOKey = payload.value;
     const hourData = hourlyDataMap.get(ISOKey);
     const timeData = hourData.timeData;
@@ -80,18 +82,26 @@ const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
     );
 };
 
-const MIN_SLOT = 1;
-const MAX_SLOT = 4;
-export function TempChart() {
+export default function TempChart() {
+    const { currentLatlng } = useLocationContext();
+    const latlngKey = currentLatlng.join(",");
+    return (
+        <ErrorBoundary fallback={<ComponentSkeleton />} resetKey={latlngKey}>
+            <Suspense fallback={<ComponentSkeleton />}>
+                <Component />
+            </Suspense>
+        </ErrorBoundary>
+    );
+}
+
+function Component() {
+    const MIN_SLOT = 1;
+    const MAX_SLOT = 4;
     const [slot, setSlot] = useState(MIN_SLOT);
 
-    const { currentLocation } = useLocationContext();
+    const { currentLatlng } = useLocationContext();
     const { unit: unitType } = useUnitContext();
-    const { isFetching, data } = useWeatherQuery(
-        Number(currentLocation?.lat || 0),
-        Number(currentLocation?.lon || 0),
-        unitType,
-    );
+    const { isFetching, data } = useWeatherQuery(currentLatlng[0], currentLatlng[1], unitType);
     const timezone = data?.timezone;
     const hourlyData = data?.hourly;
     const hourlyDataMap = useMemo(
@@ -100,7 +110,7 @@ export function TempChart() {
                 hourlyData?.map((hour) => {
                     const timeData = getTimeDetails({
                         utcTimestampInSeconds: hour.dt,
-                        timezone: timezone!,
+                        timezone: timezone,
                     });
 
                     return [
@@ -141,7 +151,7 @@ export function TempChart() {
     } satisfies ChartConfig;
 
     const dataPoints = chartData.length;
-    const minWidthPerPoint = 80;
+    const minWidthPerPoint = 60;
 
     function handlePlusSlot() {
         setSlot((s) => Math.min(s + 1, MAX_SLOT));
@@ -155,9 +165,9 @@ export function TempChart() {
         return <div>Loading...</div>;
     }
     return (
-        <div className="mt-6 w-full max-w-280 rounded-md border border-border/30 bg-slate-100 p-4 shadow-2xs dark:bg-slate-900">
+        <div className="w-full max-w-280 rounded-md border border-border/30 bg-slate-100 p-4 shadow-2xs dark:bg-slate-900">
             <div className="mb-4 flex w-full justify-between gap-0">
-                <span className="text-sm">Temperature ( Actual / Feels Like )</span>
+                <span className="text-sm text-primary">Temperature ( Actual / Feels Like )</span>
                 <div>
                     <Button
                         className="h-8 w-9 cursor-pointer rounded-sm bg-transparent hover:bg-transparent"
@@ -230,6 +240,71 @@ export function TempChart() {
                             />
                         </AreaChart>
                     </ChartContainer>
+                </div>
+            </div>
+        </div>
+    );
+}
+// h-453.75
+// h-464
+function ComponentSkeleton() {
+    const VISIBLE_COLS = 12;
+    return (
+        <div className="w-full max-w-280 rounded-md border border-border/30 bg-slate-100 p-4 shadow-2xs dark:bg-slate-900">
+            {/* Header row: label + nav buttons */}
+            <div className="mb-4 flex w-full items-center justify-between">
+                <Skeleton className="h-4 w-52" />
+                <div className="flex gap-1">
+                    <Skeleton className="h-8 w-9 rounded-sm" />
+                    <Skeleton className="h-8 w-9 rounded-sm" />
+                </div>
+            </div>
+
+            {/* Chart area — mirrors the scrollable ChartContainer h-108 + bottom: 65 margin */}
+            <div className="relative w-full overflow-x-hidden">
+                {/* Inner container width matches 12 cols × 60px each */}
+                <div style={{ minWidth: `${VISIBLE_COLS * 60}px` }}>
+                    {/* Y-axis + chart body */}
+                    <div className="flex h-86.5 items-end gap-0">
+                        {/* Y-axis placeholder: 5 ticks */}
+                        <div className="flex w-8 flex-col justify-between self-stretch py-2">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                                <Skeleton key={i} className="h-3 w-7" />
+                            ))}
+                        </div>
+
+                        {/* Chart columns — vertical bars mimicking the area chart */}
+                        <div className="flex flex-1 items-end gap-0 self-stretch px-1">
+                            {Array.from({ length: VISIBLE_COLS }).map((_, i) => {
+                                // Simulate a natural wave curve for the skeleton bars
+                                const wave = Math.sin((i / (VISIBLE_COLS - 1)) * Math.PI);
+                                const heightPct = 30 + wave * 50; // 30%–80%
+                                return (
+                                    <Skeleton
+                                        key={i}
+                                        className="flex-1 rounded-none rounded-t-sm opacity-60"
+                                        style={{ height: `${heightPct}%` }}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* X-axis custom tick zone: icon + date + time + temp — matches bottom margin 65px + foreignObject height */}
+                    <div className="mt-2 flex" style={{ paddingLeft: "2rem" }}>
+                        {Array.from({ length: VISIBLE_COLS }).map((_, i) => (
+                            <div key={i} className="flex flex-1 flex-col items-center gap-1 px-0.5">
+                                {/* Weather icon */}
+                                <Skeleton className="h-8 w-8 rounded-full" />
+                                {/* Day/date label */}
+                                <Skeleton className="h-3 w-10" />
+                                {/* Time label */}
+                                <Skeleton className="h-3 w-12" />
+                                {/* Temp / feels-like */}
+                                <Skeleton className="h-3 w-14" />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
