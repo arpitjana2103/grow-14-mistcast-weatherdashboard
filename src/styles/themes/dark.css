@@ -27,6 +27,7 @@
     --foreground: var(--slate100);
     --secondary-foreground: var(--slate400);
     --primary: var(--blue500);
+    --primary-2: var(--orange400);
     --ring: var(--blue500);
     --border: var(--slate600);
     --accent: var(--slate800);
@@ -39,14 +40,13 @@
     --popover-foreground: #a9a9a9;
     --primary-foreground: #dde8e3;
     --secondary: #242424;
-    --muted: red;
+    --muted: var(--slate800);
     --accent-foreground: #fafafa;
     --destructive: #541c15;
     --destructive-foreground: #ede9e8;
 
     /*-----------------------*/
-    --chart-1: var(--orange600);
-    --chart-2: var(--orange300);
+
     --chart-3: #a78bfa;
     --chart-4: #fbbf24;
     --chart-5: #2dd4bf;
@@ -64,7 +64,8 @@
     --font-mono: monospace;
     --radius: 0.5rem;
     */
-
+    --chart-1: var(--blue600);
+    --chart-2: var(--blue400);
     --shadow-x: 0px;
     --shadow-y: 1px;
     --shadow-blur: 3px;

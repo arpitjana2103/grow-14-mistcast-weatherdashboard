@@ -36,7 +36,12 @@
 
 @layer base {
     html {
-        @apply text-[13px] xs:text-[14px];
+        @apply text-[13px] xs:text-[14px] scroll-smooth;
+        scrollbar-color: rgba(2, 6, 24, 0.2) transparent;
+    }
+
+    html.dark {
+        scrollbar-color: rgba(2, 6, 24, 0.2) transparent;
     }
     * {
         @apply border-border outline-ring/50;
