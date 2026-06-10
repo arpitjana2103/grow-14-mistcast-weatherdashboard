@@ -168,7 +168,7 @@ function ComponentSkeleton({ className }: { className?: string }) {
 
                 {/* Button */}
                 <div className="flex justify-end">
-                    <Skeleton className="mt-4 h-8 w-30 rounded-md bg-slate-700 dark:bg-slate-300" />
+                    <Skeleton className="mt-4 h-8 w-30 rounded-md bg-slate-700 xs:h-8 dark:bg-slate-300" />
                 </div>
             </div>
         </div>

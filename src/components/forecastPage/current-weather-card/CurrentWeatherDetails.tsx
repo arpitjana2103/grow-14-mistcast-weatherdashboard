@@ -88,7 +88,7 @@ export default function CurrentWeatherDetails({
                     </span>
                 </span>
             </div>
-            <div className="lite-scrollbar w-full overflow-x-auto" style={{}}>
+            <div className="lite-scrollbar w-full overflow-x-scroll" style={{}}>
                 <div className="flex gap-1">
                     {wData.map((item) => (
                         <div

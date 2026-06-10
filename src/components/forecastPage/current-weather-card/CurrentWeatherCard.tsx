@@ -12,19 +12,19 @@ import ImageOverlay from "./ImageOverlay";
 import MiniMap from "./Minimap";
 import Time from "./Time";
 
-export default function CurrentWeatherCard() {
+export default function CurrentWeatherCard({ className }: { className?: string }) {
     const { currentLatlng } = useLocationContext();
     const latlngKey = currentLatlng.join(",");
     return (
-        <ErrorBoundary fallback={<ComponentSkeleton />} resetKey={latlngKey}>
-            <Suspense fallback={<ComponentSkeleton />}>
-                <Component />
+        <ErrorBoundary fallback={<ComponentSkeleton className={className} />} resetKey={latlngKey}>
+            <Suspense fallback={<ComponentSkeleton className={className} />}>
+                <Component className={className} />
             </Suspense>
         </ErrorBoundary>
     );
 }
 
-function Component() {
+function Component({ className }: { className?: string }) {
     const { currentLatlng } = useLocationContext();
     const [lat, lon] = currentLatlng;
     const { unit: unitType } = useUnitContext();
@@ -44,7 +44,12 @@ function Component() {
     const dewPoint = wData.current.dew_point;
 
     return (
-        <div className="max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400">
+        <div
+            className={cn(
+                "rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400",
+                className,
+            )}
+        >
             <div
                 className={cn(
                     "w-full",
@@ -97,9 +102,14 @@ function Component() {
     );
 }
 
-function ComponentSkeleton() {
+function ComponentSkeleton({ className }: { className?: string }) {
     return (
-        <div className="max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400">
+        <div
+            className={cn(
+                "max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400",
+                className,
+            )}
+        >
             <div
                 className={cn(
                     "w-full",

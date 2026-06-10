@@ -65,14 +65,14 @@ const CustomXTick = function ({ x, y, payload, hourlyDataMap }: any) {
                     <WeatherIcons
                         strokeWidth={1}
                         type={icon}
-                        className="mb-[0.3rem] h-8 w-8 text-primary"
+                        className="mb-[0.3rem] h-8 w-8 text-primary-2"
                     />
                     <span>{timeTxt}</span>
                     <span>
                         {timeData.hour12}:{timeData.minute} {timeData.period}
                     </span>
                     <span className="mt-[0.3rem] flex">
-                        <span className="font-semibold text-primary">{Math.round(temp)}°</span>
+                        <span className="font-semibold text-primary-2">{Math.round(temp)}°</span>
                         &nbsp;/&nbsp;
                         <span>{Math.round(feelsLike)}°</span>
                     </span>
@@ -165,7 +165,7 @@ function Component() {
         return <div>Loading...</div>;
     }
     return (
-        <div className="w-full max-w-280 rounded-md border border-border/30 bg-slate-100 p-4 shadow-2xs dark:bg-slate-900">
+        <div className="w-full rounded-md border border-border/30 bg-card p-4 shadow-2xs">
             <div className="mb-4 flex w-full justify-between gap-0">
                 <span className="text-sm text-primary">Temperature ( Actual / Feels Like )</span>
                 <div>
@@ -274,19 +274,8 @@ function ComponentSkeleton() {
                         </div>
 
                         {/* Chart columns — vertical bars mimicking the area chart */}
-                        <div className="flex flex-1 items-end gap-0 self-stretch px-1">
-                            {Array.from({ length: VISIBLE_COLS }).map((_, i) => {
-                                // Simulate a natural wave curve for the skeleton bars
-                                const wave = Math.sin((i / (VISIBLE_COLS - 1)) * Math.PI);
-                                const heightPct = 30 + wave * 50; // 30%–80%
-                                return (
-                                    <Skeleton
-                                        key={i}
-                                        className="flex-1 rounded-none rounded-t-sm opacity-60"
-                                        style={{ height: `${heightPct}%` }}
-                                    />
-                                );
-                            })}
+                        <div className="bg-red mb-2 ml-3.5 flex flex-1 items-end gap-0 self-stretch px-1">
+                            <Skeleton className="h-full w-full" />
                         </div>
                     </div>
 
