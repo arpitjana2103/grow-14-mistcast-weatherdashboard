@@ -38,15 +38,25 @@ function Component() {
 
         if (permission.state === "denied") {
             alert("Location access is blocked. Enable it in browser settings.");
+            setFechingLatLng(false);
             return;
         }
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            const latVal = position.coords.latitude;
-            const lngVal = position.coords.longitude;
-            handleSetCurrentLatlng([latVal, lngVal]);
-            setFechingLatLng(false);
-        }, console.error);
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latVal = position.coords.latitude;
+                const lngVal = position.coords.longitude;
+                handleSetCurrentLatlng([latVal, lngVal]);
+                setFechingLatLng(false);
+            },
+            (error) => {
+                console.error(error);
+                setFechingLatLng(false); // ✅ always reset loading
+                if (error.code === error.PERMISSION_DENIED) {
+                    alert("Location access was denied. Enable it in browser settings.");
+                }
+            },
+        );
     };
 
     return (
