@@ -124,116 +124,46 @@ export type TDailyTemp = z.infer<typeof DailyTempSchema>;
 export type TDailyFeelsLike = z.infer<typeof DailyFeelsLikeSchema>;
 export type TWeatherIcon = z.infer<typeof WeatherIconSchema>;
 
-/*
-"use client"
+// ─── Air Pollution API ───────────────────────────────────────────────────────
 
-import { TrendingUp } from "lucide-react"
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
+/**
+ * Air Quality Index (AQI) scale:
+ * 1 = Good | 2 = Fair | 3 = Moderate | 4 = Poor | 5 = Very Poor
+ */
+const AirQualityIndexSchema = z.union([
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+    z.literal(5),
+]);
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  type ChartConfig,
-} from "@/components/ui/chart"
+const AirPollutionComponentsSchema = z.object({
+    co: z.number().min(0),
+    no: z.number().min(0),
+    no2: z.number().min(0),
+    o3: z.number().min(0),
+    so2: z.number().min(0),
+    pm2_5: z.number().min(0),
+    pm10: z.number().min(0),
+    nh3: z.number().min(0),
+});
 
-export const description = "An area chart with axes"
+const AirPollutionItemSchema = z.object({
+    dt: z.number().int(),
+    main: z.object({ aqi: AirQualityIndexSchema }),
+    components: AirPollutionComponentsSchema,
+});
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+export const AirPollutionResponseSchema = z.object({
+    coord: z.object({
+        lon: z.number().min(-180).max(180),
+        lat: z.number().min(-90).max(90),
+    }),
+    list: z.array(AirPollutionItemSchema).min(1),
+});
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
-  },
-} satisfies ChartConfig
-
-export function ChartAreaAxes() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Area Chart - Axes</CardTitle>
-        <CardDescription>
-          Showing total visitors for the last 6 months
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: -20,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickCount={3}
-            />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Area
-              dataKey="mobile"
-              type="natural"
-              fill="var(--color-mobile)"
-              fillOpacity={0.4}
-              stroke="var(--color-mobile)"
-              stackId="a"
-            />
-            <Area
-              dataKey="desktop"
-              type="natural"
-              fill="var(--color-desktop)"
-              fillOpacity={0.4}
-              stroke="var(--color-desktop)"
-              stackId="a"
-            />
-          </AreaChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 leading-none font-medium">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              January - June 2024
-            </div>
-          </div>
-        </div>
-      </CardFooter>
-    </Card>
-  )
-}
-
-*/
+export type TAirPollutionResponse = z.infer<typeof AirPollutionResponseSchema>;
+export type TAirPollutionItem = z.infer<typeof AirPollutionItemSchema>;
+export type TAirPollutionComponents = z.infer<typeof AirPollutionComponentsSchema>;
+export type TAirQualityIndex = z.infer<typeof AirQualityIndexSchema>;

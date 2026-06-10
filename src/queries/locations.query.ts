@@ -1,6 +1,6 @@
 import type { TLocationData } from "@/schemas/location.schema";
 
-import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 import sleepQuery from "@/utils/sleep-query.util";
 
@@ -26,15 +26,4 @@ export function useLocationLatLng([lat, lng]: [number, number]) {
         staleTime: 1000 * 60 * 10,
         retry: false,
     });
-}
-
-export function useLocationByLatLng() {
-    const queryClient = useQueryClient();
-    async function fetchLocationByLatLng(lat: number, lon: number) {
-        return queryClient.fetchQuery({
-            queryKey: ["location", lat, lon],
-            queryFn: () => getLocationByLatLon(lat, lon),
-        });
-    }
-    return { fetchLocationByLatLng };
 }

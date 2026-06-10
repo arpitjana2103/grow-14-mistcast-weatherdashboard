@@ -19,9 +19,7 @@ export async function searchLocations(query: string) {
         },
     });
 
-    console.log(res.data.display_place);
     const data = LocationDataResponseSchema.parse(res.data);
-    console.log(data[0].display_place);
     return data;
 }
 
