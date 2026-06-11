@@ -3,11 +3,14 @@ import type { TAirPoluctants } from "@/schemas/weather.schema";
 import { FastWindIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Triangle } from "lucide-react";
+import { Suspense } from "react";
 
 import { useLocationContext } from "@/contexts/location.context";
 import { cn } from "@/lib/utils";
 import { useAirPollutionQuery } from "@/queries/weather.query";
 
+import { ErrorBoundary } from "../ErrorBoundary";
+import { Skeleton } from "../ui/skeleton";
 import { TooltipProvider } from "../ui/tooltip";
 
 type Props = { className?: string };
@@ -15,20 +18,6 @@ type Props = { className?: string };
 type TAirQualityLevel = "Good" | "Fair" | "Moderate" | "Poor" | "Very Poor";
 type TAriQualityRanges = Record<TAirQualityLevel, { min: number; max: number }>;
 type TAirQualityRanges = Record<TAirPoluctants, TAriQualityRanges>;
-// const obj = {
-//     so2: {
-//         range: [
-//             [0, 20],
-//             [20, 80],
-//             [80, 250],
-//             [250, 350],
-//             [350, Infinity],
-//         ],
-//         level: ["Good", "Fair", "Moderate", "Poor", "Very Poor"],
-//         maxVal: 350,
-//         minVal: 0,
-//     },
-// };
 
 const airQualityRanges: TAirQualityRanges = {
     so2: {
@@ -138,6 +127,25 @@ const getPoluctantStats = function (poluctant: TAirPoluctants, value: number) {
 };
 
 export default function Sidebar({ className }: Props) {
+    const { currentLatlng } = useLocationContext();
+    const latlngKey = currentLatlng.join(",");
+    return (
+        <div
+            className={cn(
+                "relative lite-scrollbar overflow-y-scroll rounded-md bg-card p-4 smmd:pb-4 lgxl:pb-10",
+                className,
+            )}
+        >
+            <ErrorBoundary fallback={<ComponentSkeleton />} resetKey={latlngKey}>
+                <Suspense fallback={<ComponentSkeleton />}>
+                    <Component />
+                </Suspense>
+            </ErrorBoundary>
+        </div>
+    );
+}
+
+function Component() {
     const {
         currentLatlng: [lat, lon],
     } = useLocationContext();
@@ -148,12 +156,7 @@ export default function Sidebar({ className }: Props) {
 
     if (!data) return <div>Loading</div>;
     return (
-        <div
-            className={cn(
-                "relative lite-scrollbar overflow-y-scroll rounded-md bg-card p-4 pb-10 smmd:pb-4 lgxl:pb-10",
-                className,
-            )}
-        >
+        <div>
             <span className="absolute top-4 right-4">
                 <HugeiconsIcon
                     icon={FastWindIcon}
@@ -195,6 +198,66 @@ export default function Sidebar({ className }: Props) {
                         />
                     );
                 })}
+            </div>
+        </div>
+    );
+}
+
+function ComponentSkeleton() {
+    return (
+        <div>
+            {/* Icon placeholder — top-right absolute */}
+            <span className="absolute top-4 right-4">
+                <Skeleton className="h-10 w-10 rounded-full" />
+            </span>
+
+            {/* Header: "Air Quality" title */}
+            <div className="mb-1">
+                <Skeleton className="h-5 w-28" />
+            </div>
+
+            {/* AQI big number */}
+            <div className="mt-1 mb-4">
+                <div className="flex items-end gap-2">
+                    <Skeleton className="h-9 w-14" /> {/* "AQI" label */}
+                    <Skeleton className="h-9 w-10" /> {/* numeric value */}
+                </div>
+            </div>
+
+            {/* Description paragraph — two lines */}
+            <div className="mb-6 flex flex-col gap-1.5">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+                <Skeleton className="h-4 w-3/4" />
+            </div>
+
+            {/* Pollutant cards grid — mirrors real component */}
+            <div className="grid grid-cols-1 gap-0 smmd:grid-cols-2 smmd:gap-4 mdlg:grid-cols-3 lgxl:grid-cols-1 lgxl:gap-0">
+                {Array.from({ length: 8 }).map((_, i) => (
+                    <div
+                        key={i}
+                        className="border-t border-dashed border-border py-4 smmd:rounded-md smmd:border smmd:px-4 lgxl:rounded-none lgxl:border-x-0 lgxl:border-b-0 lgxl:px-0"
+                    >
+                        {/* Pollutant name */}
+                        <Skeleton className="mb-1 h-6 w-36" />
+
+                        {/* Short label + value row */}
+                        <div className="mb-6 flex items-center justify-between">
+                            <Skeleton className="h-4 w-10" />
+                            <Skeleton className="h-4 w-20" />
+                        </div>
+
+                        {/* Gradient bar */}
+                        <div className="relative mb-1 h-1.5 w-full rounded-full bg-muted opacity-40" />
+
+                        {/* GOOD / FAIR / MODERATE / POOR / WORST labels */}
+                        <div className="mt-1 flex w-full items-center justify-between">
+                            {["GOOD", "FAIR", "MOD", "POOR", "WORST"].map((label) => (
+                                <Skeleton key={label} className="h-3 w-7" />
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
