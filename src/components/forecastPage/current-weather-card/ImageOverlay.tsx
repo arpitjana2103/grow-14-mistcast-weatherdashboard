@@ -75,7 +75,7 @@ export default function ImageOverlay({
             />
 
             {/* Content pinned to bottom */}
-            <div className="absolute bottom-0 z-10 px-4 py-2.5 text-left text-sm leading-5.5 text-white/95">
+            <div className="absolute bottom-0 z-10 px-4 py-2.5 text-left text-sm/4.5 text-white/95">
                 <p>{weatherImageDescription[icon]}</p>
             </div>
         </div>

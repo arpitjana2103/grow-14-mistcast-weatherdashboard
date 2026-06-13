@@ -53,10 +53,10 @@ function TooltipContent({
   )
 }
 
-function CustomToolTipContent({ children }: { children: React.ReactNode }) {
+function CustomToolTipContent({ className, children }: { children: React.ReactNode, className?: string }) {
     return (
         <TooltipContent
-            className="z-1001 rounded-sm bg-opposite-background text-sm text-opposite-foreground shadow-2xl"
+            className={cn("z-1001 rounded-sm bg-opposite-background text-sm text-opposite-foreground shadow-2xl w-40", className)}
             className2="bg-opposite-background fill-opposite-background"
             side="bottom"
         >

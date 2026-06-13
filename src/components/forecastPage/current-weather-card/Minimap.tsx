@@ -23,7 +23,11 @@ export default function MiniMap({
     //     "https://api.maptiler.com/maps/openstreetmap-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK";
     // const baseMapLayer = theme === "dark" ? darkMapLayer : lightMapLayer;
     return (
-        <div id="miniMap" className={cn("rounded-md overflow-hidden relative", className)}>
+        <div
+            key={`${lat}-${lon}`}
+            id="miniMap"
+            className={cn("rounded-md overflow-hidden relative", className)}
+        >
             <NavLink to="/map">
                 <Button className="absolute top-3 right-3 z-900 w-fit cursor-pointer bg-primary px-2.5 py-4 text-sm font-normal text-foreground hover:bg-primary/95">
                     <span>Open Map</span>{" "}

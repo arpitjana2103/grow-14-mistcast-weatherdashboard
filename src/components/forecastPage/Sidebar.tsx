@@ -294,7 +294,8 @@ const PoluctantCard = function ({
 
                 <span className="text-sm">{value} μg/m3</span>
             </div>
-            <div className="relative mb-1 h-1.5 w-full rounded-full bg-[linear-gradient(90deg,#2B7FFF_0%,#00C950_25%,#BBF451_50%,#F0B100_75%,#FF0D0D_100%)] opacity-95">
+            <div className="relative mb-1 h-1.5 w-full rounded-full bg-[linear-gradient(90deg,#2b7fff_0%,#00bc7d_25%,#BBF451_50%,#ff6900_75%,#fb2c36_100%)] opacity-95">
+                {/*<div className="relative mb-1 h-1.5 w-full rounded-full bg-[linear-gradient(90deg,#2B7FFF_0%,#00C950_25%,#BBF451_50%,#F0B100_75%,#FF0D0D_100%)] opacity-95">*/}
                 <div
                     style={{ left: `${_percentage}%` }}
                     className="absolute -top-2 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-transparent"

@@ -71,7 +71,7 @@ SKY 600 :  #0084d1
     --accent: var(--slate200);
     --input: var(--slate100);
     --muted-foreground: var(--slate500);
-    --card: var(--slate100);
+    --card: var(--slate50);
 
     --foreground: var(--slate700);
     --secondary-foreground: var(--slate500);
@@ -88,8 +88,8 @@ SKY 600 :  #0084d1
     --destructive-foreground: #fffcfc;
 
     /*-----------------------*/
-    --chart-1: var(--orange600);
-    --chart-2: var(--orange300);
+    --chart-1: var(--blue500);
+    --chart-2: var(--orange400);
 
     --chart-3: #8b5cf6;
     --chart-4: #f59e0b;
@@ -115,21 +115,11 @@ SKY 600 :  #0084d1
     --shadow-color: #000000;
     --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
     --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
-    --shadow-sm:
-        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
-        0px 1px 2px -1px hsl(0 0% 0% / 0.17);
-    --shadow:
-        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
-        0px 1px 2px -1px hsl(0 0% 0% / 0.17);
-    --shadow-md:
-        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
-        0px 2px 4px -1px hsl(0 0% 0% / 0.17);
-    --shadow-lg:
-        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
-        0px 4px 6px -1px hsl(0 0% 0% / 0.17);
-    --shadow-xl:
-        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
-        0px 8px 10px -1px hsl(0 0% 0% / 0.17);
+    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 2px 4px -1px hsl(0 0% 0% / 0.17);
+    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 4px 6px -1px hsl(0 0% 0% / 0.17);
+    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 8px 10px -1px hsl(0 0% 0% / 0.17);
     --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
     --tracking-normal: 0.025em;
     --spacing: 0.25rem;

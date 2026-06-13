@@ -1,4 +1,5 @@
 import CurrentWeatherCard from "@/components/forecastPage/current-weather-card/CurrentWeatherCard";
+import DailyWeatherCard from "@/components/forecastPage/daily-weather-card/DailyWeatehrCard";
 import Charts from "@/components/forecastPage/hourly-weather-card/Charts";
 import Sidebar from "@/components/forecastPage/Sidebar";
 
@@ -23,6 +24,7 @@ export default function ForecastPage() {
                         </div>
                     </div>
                 </Container>
+                <DailyWeatherCard className="w-full" />
             </main>
         </>
     );

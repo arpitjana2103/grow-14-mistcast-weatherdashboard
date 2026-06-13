@@ -167,7 +167,7 @@ function Component() {
         return <div>Loading...</div>;
     }
     return (
-        <div className="w-full rounded-md border border-border/30 bg-card p-4 shadow-2xs">
+        <div className="w-full rounded-md border border-border/30 bg-card/30 p-4 shadow-2xs">
             <div className="mb-4 flex w-full justify-between gap-0">
                 <span className="text-sm text-primary">Temperature ( Actual / Feels Like )</span>
                 <div>
@@ -205,7 +205,7 @@ function Component() {
                                 bottom: 65,
                             }}
                         >
-                            <CartesianGrid vertical={true} horizontal={true} />
+                            <CartesianGrid vertical={false} horizontal={false} />
                             <XAxis
                                 dataKey="time"
                                 tickLine={false}
@@ -215,31 +215,50 @@ function Component() {
                                 tick={<CustomXTick hourlyDataMap={hourlyDataMap} />}
                                 height={44}
                             />
-                            <YAxis
-                                tickLine={false}
-                                axisLine={false}
-                                tickMargin={8}
-                                tickCount={5}
-                                height={50}
-                            />
+                            <YAxis tickLine={false} axisLine={false} tickMargin={8} tickCount={5} />
                             <ChartTooltip cursor={true} content={<CustomToolTip />} />
-                            {/*<ChartTooltip cursor={true} content={<ChartTooltipContent />} />*/}
                             <Area
                                 dataKey="actual"
                                 type="natural"
-                                fill="var(--color-actual)"
-                                fillOpacity={0.4}
+                                fill="url(#fillActual)"
+                                fillOpacity={0.8}
                                 stroke="var(--color-actual)"
-                                stackId="a"
+                                strokeWidth={2}
                             />
                             <Area
                                 dataKey="feels_like"
                                 type="natural"
-                                fill="var(--color-feels_like)"
-                                fillOpacity={0.4}
+                                fill="url(#fillFeelsLike)"
+                                fillOpacity={0}
                                 stroke="var(--color-feels_like)"
-                                stackId="a"
+                                strokeWidth={3}
                             />
+                            <defs>
+                                <linearGradient id="fillActual" x1="0" y1="0" x2="0" y2="1">
+                                    <stop
+                                        offset="10%"
+                                        stopColor="var(--color-actual)"
+                                        stopOpacity={0.8}
+                                    />
+                                    <stop
+                                        offset="90%"
+                                        stopColor="var(--color-actual)"
+                                        stopOpacity={0}
+                                    />
+                                </linearGradient>
+                                <linearGradient id="fillFeelsLike" x1="0" y1="0" x2="0" y2="1">
+                                    <stop
+                                        offset="5%"
+                                        stopColor="var(--color-feels_like)"
+                                        stopOpacity={0.8}
+                                    />
+                                    <stop
+                                        offset="95%"
+                                        stopColor="var(--color-feels_like)"
+                                        stopOpacity={0.1}
+                                    />
+                                </linearGradient>
+                            </defs>
                         </AreaChart>
                     </ChartContainer>
                 </div>
