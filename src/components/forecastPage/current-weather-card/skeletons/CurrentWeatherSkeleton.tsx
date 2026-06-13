@@ -1,9 +1,14 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
-export function CurrentWeatherCardSkeleton() {
+export default function CurrentWeatherSkeleton({ className }: { className?: string }) {
     return (
-        <div className="max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400">
+        <div
+            className={cn(
+                "max-w-280 rounded-md bg-linear-to-tr from-orange-200 to-orange-500 p-2 shadow-2xl sm:p-3 dark:from-blue-800 dark:to-blue-400",
+                className,
+            )}
+        >
             <div
                 className={cn(
                     "w-full",
@@ -15,8 +20,9 @@ export function CurrentWeatherCardSkeleton() {
                 )}
             >
                 {/* ImageOverlay placeholder */}
-                <Skeleton className="h-48 w-full rounded-md md:aspect-square md:h-full" />
+                <Skeleton className="h-full w-full rounded-md md:aspect-square md:h-full" />
 
+                {/*<ImageOverlay icon={icon} className="h-full w-full md:aspect-square" />*/}
                 {/* Center panel — Time + WeatherDetails */}
                 <div
                     className={cn(
@@ -57,15 +63,7 @@ export function CurrentWeatherCardSkeleton() {
                         </div>
                     </div>
                 </div>
-
-                {/* MiniMap placeholder — hidden on mobile, shown md+ */}
-                <Skeleton
-                    className={cn(
-                        "w-full aspect-square col-span-3 rounded-md",
-                        "lg:col-span-1",
-                        "hidden md:block",
-                    )}
-                />
+                <Skeleton className={cn("w-full col-span-3", "lg:col-span-1", "hidden md:block")} />
             </div>
         </div>
     );

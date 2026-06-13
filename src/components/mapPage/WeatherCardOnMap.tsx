@@ -19,15 +19,15 @@ export default function WeatherCardOnMap() {
     const { currentLatlng } = useLocationContext();
     const latlngKey = currentLatlng.join(",");
     return (
-        <ErrorBoundary fallback={<ComponentSkeleton />} resetKey={latlngKey}>
-            <Suspense fallback={<ComponentSkeleton />}>
-                <Component />
+        <ErrorBoundary fallback={<WeatherCardOnMapSkeleton />} resetKey={latlngKey}>
+            <Suspense fallback={<WeatherCardOnMapSkeleton />}>
+                <WeatherCardOnMapComponent />
             </Suspense>
         </ErrorBoundary>
     );
 }
 
-function Component({ className }: { className?: string }) {
+function WeatherCardOnMapComponent({ className }: { className?: string }) {
     const { currentLocation, currentLatlng } = useLocationContext();
     const [currLat, currLon] = currentLatlng;
     const { unit: unitType } = useUnitContext();
@@ -137,7 +137,7 @@ function UpdateCurrentLocation() {
     return null;
 }
 
-function ComponentSkeleton({ className }: { className?: string }) {
+function WeatherCardOnMapSkeleton({ className }: { className?: string }) {
     return (
         <div
             className={cn(
