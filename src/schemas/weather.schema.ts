@@ -42,7 +42,7 @@ const CurrentWeatherSchema = z.object({
     visibility: z.number().int().min(0).optional().default(0),
     wind_speed: z.number().min(0),
     wind_deg: z.number().int().min(0).max(360),
-    wind_gust: z.number().min(0).optional(),
+    wind_gust: z.number().min(0).optional().default(0),
     weather: z.array(WeatherConditionSchema).min(1),
     rain: z.object({ "1h": z.number().min(0) }).optional(), // Precipitation, mm/h
     snow: z.object({ "1h": z.number().min(0) }).optional(), // Precipitation, mm/h

@@ -74,10 +74,11 @@ export default function SunRise({ className }: Props) {
     return (
         <div
             className={cn(
-                "border border-border/30 shadow-2xs p-4 pt-8 flex flex-col w-full justify-between bg-card",
+                "border relative border-border/30 shadow-2xs p-4 pt-8 flex flex-col w-full justify-between bg-card",
                 className,
             )}
         >
+            <span className="absolute top-4 right-4 text-xs text-secondary-foreground">Sun</span>
             <div className="px-4">
                 <div className="relative aspect-2/1 w-full rounded-t-full border-[1.5px] border-b-0 border-dashed border-orange-400">
                     <div

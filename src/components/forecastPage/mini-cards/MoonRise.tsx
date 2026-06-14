@@ -78,10 +78,11 @@ export default function MoonRise({ className }: Props) {
     return (
         <div
             className={cn(
-                "border border-border/30 shadow-2xs p-4 pt-8 flex flex-col w-full justify-between bg-card",
+                "border border-border/30 shadow-2xs p-4 pt-8 flex flex-col w-full justify-between bg-card relative",
                 className,
             )}
         >
+            <span className="absolute top-4 right-4 text-xs text-secondary-foreground">Moon</span>
             <div className="px-4">
                 <div className="relative aspect-2/1 w-full rounded-t-full border-[1.5px] border-b-0 border-dashed border-blue-500">
                     <div
