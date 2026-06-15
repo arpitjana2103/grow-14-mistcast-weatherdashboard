@@ -1,13 +1,14 @@
 import { FastWindIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import { useLocationContext } from "@/contexts/location.context";
-import { useUnitContext, WeatherUnits } from "@/contexts/unit.context";
+import { WeatherUnits, type TUnit } from "@/contexts/unit.context";
 import { cn } from "@/lib/utils";
-import { useWeatherQuery } from "@/queries/weather.query";
 
 type Props = {
     className?: string;
+    unit: TUnit;
+    windSpeed: number;
+    windDeg: number;
 };
 
 const getPointOnCircle = (deg: number) => {
@@ -19,24 +20,7 @@ const getPointOnCircle = (deg: number) => {
     };
 };
 
-// const getWindDirection = (deg: number) => {
-//     const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-
-//     const index = Math.round(deg / 45) % 8;
-
-//     return directions[index];
-// };
-
-export default function Wind({ className }: Props) {
-    const {
-        currentLatlng: [lat, lon],
-    } = useLocationContext();
-    const { unit } = useUnitContext();
-    const { data } = useWeatherQuery(lat, lon, unit);
-    const windSpeed = data.current.wind_speed;
-    const windDeg = data.current.wind_deg;
-    // const windGust = data.current.wind_gust;
-    // const windDirection = getWindDirection(windDeg);
+export default function Wind({ unit, windSpeed, windDeg, className }: Props) {
     const windUnit = WeatherUnits[unit].wind_speed;
     return (
         <div

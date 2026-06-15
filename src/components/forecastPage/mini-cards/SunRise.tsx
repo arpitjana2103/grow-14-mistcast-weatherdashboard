@@ -1,14 +1,15 @@
 import { Sun03Icon, SunriseIcon, SunsetIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import { useLocationContext } from "@/contexts/location.context";
-import { useUnitContext } from "@/contexts/unit.context";
 import { cn } from "@/lib/utils";
-import { useWeatherQuery } from "@/queries/weather.query";
 import { getTimeDetails } from "@/utils/time-fn.util";
 
 type Props = {
     className?: string;
+    sunRiseDt?: number;
+    sunSetDt?: number;
+    currentTimeDt: number;
+    timezone: string;
 };
 
 function getDaylightDuration(
@@ -43,16 +44,13 @@ function getSunAngleDegree(currentTimeDt: number, sunRiseDt: number, sunSetDt: n
     }
 }
 
-export default function SunRise({ className }: Props) {
-    const {
-        currentLatlng: [lat, lon],
-    } = useLocationContext();
-    const { unit } = useUnitContext();
-    const { data } = useWeatherQuery(lat, lon, unit);
-    const timezone = data.timezone;
-    const sunRiseDt = data.current.sunrise;
-    const sunSetDt = data.current.sunset;
-    const currentTimeDt = data.current.dt;
+export default function SunRise({
+    sunRiseDt,
+    sunSetDt,
+    currentTimeDt,
+    timezone,
+    className,
+}: Props) {
     if (!sunRiseDt || !sunSetDt) return null;
 
     const valueDeg = getSunAngleDegree(currentTimeDt, sunRiseDt, sunSetDt);

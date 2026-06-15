@@ -1,14 +1,15 @@
 import { Moon02Icon, MoonFastWindIcon, MoonsetIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import { useLocationContext } from "@/contexts/location.context";
-import { useUnitContext } from "@/contexts/unit.context";
 import { cn } from "@/lib/utils";
-import { useWeatherQuery } from "@/queries/weather.query";
 import { getTimeDetails } from "@/utils/time-fn.util";
 
 type Props = {
     className?: string;
+    timezone: string;
+    moonRiseDt?: number;
+    moonSetDt?: number;
+    currentTimeDt: number;
 };
 
 function getMoonlightDuration(
@@ -46,16 +47,13 @@ function getMoonAngleDegree(currentTimeDt: number, moonRiseDt: number, moonSetDt
     }
 }
 
-export default function MoonRise({ className }: Props) {
-    const {
-        currentLatlng: [lat, lon],
-    } = useLocationContext();
-    const { unit } = useUnitContext();
-    const { data } = useWeatherQuery(lat, lon, unit);
-    const timezone = data.timezone;
-    const moonRiseDt = data.daily[0].moonrise;
-    const moonSetDt = data.daily[0].moonset;
-    const currentTimeDt = data.current.dt;
+export default function MoonRise({
+    timezone,
+    moonRiseDt,
+    moonSetDt,
+    currentTimeDt,
+    className,
+}: Props) {
     if (!moonRiseDt || !moonSetDt) return null;
 
     const valueDeg = getMoonAngleDegree(currentTimeDt, moonRiseDt, moonSetDt);

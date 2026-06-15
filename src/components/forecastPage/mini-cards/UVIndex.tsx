@@ -2,13 +2,11 @@ import { Uv02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Triangle } from "lucide-react";
 
-import { useLocationContext } from "@/contexts/location.context";
-import { useUnitContext } from "@/contexts/unit.context";
 import { cn } from "@/lib/utils";
-import { useWeatherQuery } from "@/queries/weather.query";
 
 type Props = {
     className?: string;
+    uvIndex: number;
 };
 
 function getUVMessage(uvIndex: number) {
@@ -31,17 +29,9 @@ function getUVMessage(uvIndex: number) {
     return "Extreme UV. Avoid prolonged sun exposure and use full protection.";
 }
 
-export default function UVIndex({ className }: Props) {
-    const {
-        currentLatlng: [lat, lon],
-    } = useLocationContext();
-    const { unit } = useUnitContext();
-    const { data } = useWeatherQuery(lat, lon, unit);
-    const uvIndex = data.current.uvi;
+export default function UVIndex({ className, uvIndex }: Props) {
     const percentage = Math.min((uvIndex / 11) * 100, 100);
     const _percentage = percentage < 1.5 ? 1.5 : percentage > 98.5 ? 98.5 : percentage;
-
-    console.log(uvIndex);
 
     return (
         <div
