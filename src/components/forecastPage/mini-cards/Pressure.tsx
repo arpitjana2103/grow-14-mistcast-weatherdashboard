@@ -5,5 +5,6 @@ type Props = {
 };
 
 export default function Pressure({ className }: Props) {
+    return null;
     return <div className={cn("", className)}></div>;
 }

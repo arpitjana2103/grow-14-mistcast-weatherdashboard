@@ -12,22 +12,22 @@ export default function Clouds({ className, clouds }: Props) {
     return (
         <div
             className={cn(
-                " border-blue-500 shadow-2xs p-0 relative overflow-hidden",
-
+                "shadow-2xs p-0 relative overflow-hidden bg-[linear-gradient(0deg,#2b7fff_0%,white_100%)] dark:bg-[linear-gradient(0deg,#020618_0%,#020618_20%,#62748e_100%)]",
                 className,
             )}
-            style={{
-                background: `linear-gradient(0deg, #2b7fff 0%, white 100%)`,
-            }}
         >
-            <span className="absolute top-4 right-4 text-xs text-blue-500">Clouds</span>
+            <span className="absolute top-4 right-4 text-xs text-blue-500 dark:text-white">
+                Clouds
+            </span>
             <div className="flex h-full w-full flex-col items-center justify-center">
                 <HugeiconsIcon
                     icon={clouds > 0 ? CloudIcon : CloudOffIcon}
                     strokeWidth={1}
-                    className="size-[40%] translate-y-[10%] text-white"
+                    className="size-[40%] translate-y-[10%] text-white dark:text-white/80"
                 />
-                <div className="text-2xl font-semibold text-white">{clouds} %</div>
+                <div className="text-2xl font-semibold text-white dark:text-white/80">
+                    {clouds} %
+                </div>
             </div>
         </div>
     );
