@@ -33,6 +33,8 @@ export default function MiniCards({}: Props) {
     const snow = data.daily[0].snow;
     const uvIndex = data.current.uvi;
     const visibility = data.current.visibility;
+    const humidity = data.current.humidity;
+    const dewPoint = data.current.dew_point;
     return (
         <div className="mt-12 grid grid-cols-2 grid-rows-5 gap-4 sm:grid-cols-3 sm:grid-rows-none md:grid-cols-4 lg:grid-cols-5 lgxl:grid-cols-6">
             <SunRise
@@ -49,26 +51,32 @@ export default function MiniCards({}: Props) {
                 currentTimeDt={currentTimeDt}
                 className="aspect-square w-full overflow-auto rounded-md"
             />
+            <Visibility
+                visibility={visibility}
+                className="aspect-square w-full overflow-auto rounded-md"
+            />
             <Wind
                 unit={unit}
                 windSpeed={windSpeed}
                 windDeg={windDeg}
                 className="aspect-square w-full overflow-auto rounded-md"
             />
+            <UVIndex uvIndex={uvIndex} className="aspect-square w-full overflow-auto rounded-md" />
             <Precipitation
                 pop={pop}
                 rain={rain}
                 snow={snow}
                 className="aspect-square w-full overflow-auto rounded-md"
             />
-            <UVIndex uvIndex={uvIndex} className="aspect-square w-full overflow-auto rounded-md" />
-            <Visibility
-                visibility={visibility}
+
+            <Humidity
+                humidity={humidity}
+                dewPoint={dewPoint}
+                unit={unit}
                 className="aspect-square w-full overflow-auto rounded-md"
             />
             <Pressure className="aspect-square w-full overflow-auto rounded-md bg-red-300" />
             <Clouds className="aspect-square w-full overflow-auto rounded-md bg-red-300" />
-            <Humidity className="aspect-square w-full overflow-auto rounded-md bg-red-300" />
         </div>
     );
 }

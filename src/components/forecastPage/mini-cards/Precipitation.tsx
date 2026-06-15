@@ -17,7 +17,7 @@ export default function Precipitation({ pop, rain, snow, className }: Props) {
 
     return (
         <div className={cn("border border-border/30 shadow-2xs p-4 bg-card flex", className)}>
-            <div className="flex h-full gap-0">
+            <div className="flex h-full w-fit gap-0">
                 <Metrix precipChance={precipChance} />
             </div>
             <div className="gap-auto flex grow flex-col justify-start pl-4 text-secondary-foreground xs:gap-1 sm:gap-2">
