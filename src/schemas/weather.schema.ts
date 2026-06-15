@@ -107,8 +107,6 @@ const DailyWeatherSchema = z.object({
     uvi: z.number().min(0),
 });
 
-// [ date, weather, temperature, rainchance, wind_speed, UVIndex, pressure ]
-
 export const OneCallResponseSchema = z.object({
     lat: z.number().min(-90).max(90),
     lon: z.number().min(-180).max(180),
