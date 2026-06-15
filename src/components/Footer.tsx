@@ -3,25 +3,29 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import { useTheme } from "@/contexts/theme.context";
 
+import logoImg from "./../assets/icons/logo.png";
 import Container from "./layout/Container";
-import Logo from "./Logo";
+import { Logo2, LogoSVG } from "./Logo";
 
 export default function Footer() {
     const { theme } = useTheme();
     const isDark = theme === "dark";
     return (
-        <div className="mt-12 bg-border/20 py-6">
-            <Container>
+        <div className="mt-12 bg-border/20 pt-4">
+            <Container className="relative overflow-hidden">
+                <span className="absolute -top-[22%] right-0 h-[40rem] w-[40rem] opacity-10">
+                    <LogoSVG className="h-full w-full" />
+                </span>
                 <div className="mb-2 pt-4">
-                    <Logo className="scale-[0.9] grayscale" />
+                    <Logo2 className="" />
                 </div>
-                <p className="max-w-120 text-sm text-stone-500">
+                <p className="max-w-120 text-sm text-secondary-foreground/80">
                     MistCast is a real-time weather app that shows current conditions, hourly &
                     7-day forecasts, air quality data, and an interactive weather map — for any
                     location worldwide, with dark mode and metric/imperial support.
                 </p>
                 <div>
-                    <p className="pt-2 text-sm text-stone-500">build with - </p>
+                    <p className="pt-2 text-sm text-secondary-foreground/80">build with - </p>
                     <div className="mt-4 flex items-center gap-3">
                         <div className="h-6">
                             <img className="h-full -translate-y-1" src="/images/atom.png" />
@@ -46,7 +50,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-10 flex items-end justify-end">
+                <div className="mt-10 flex items-end justify-end pb-8">
                     <div className="flex gap-1 text-sm text-secondary-foreground">
                         <span>Made with </span>
                         <span>
