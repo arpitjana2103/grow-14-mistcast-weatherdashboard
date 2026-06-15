@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { useLocationContext } from "@/contexts/location.context";
 import { useUnitContext } from "@/contexts/unit.context";
 import { useWeatherQuery } from "@/queries/weather.query";
@@ -7,15 +10,25 @@ import Clouds from "./Clouds";
 import Humidity from "./Humidity";
 import MoonRise from "./MoonRise";
 import Precipitation from "./Precipitation";
-import Pressure from "./Pressure";
+import MiniCardsSkeleton from "./skeletons/MiniCardsSkeleton";
 import SunRise from "./SunRise";
 import UVIndex from "./UVIndex";
 import Visibility from "./Visibility";
 import Wind from "./Wind";
 
-type Props = {};
+export default function MiniCard() {
+    const { currentLatlng } = useLocationContext();
+    const latlngKey = currentLatlng.join(",");
+    return (
+        <ErrorBoundary fallback={<MiniCardsSkeleton />} resetKey={latlngKey}>
+            <Suspense fallback={<MiniCardsSkeleton />}>
+                <MiniCardsComponent />
+            </Suspense>
+        </ErrorBoundary>
+    );
+}
 
-export default function MiniCards({}: Props) {
+export function MiniCardsComponent() {
     const {
         currentLatlng: [lat, lon],
     } = useLocationContext();
@@ -87,7 +100,6 @@ export default function MiniCards({}: Props) {
                     className="aspect-square w-full overflow-auto rounded-md"
                 />
                 <Clouds clouds={clouds} className="aspect-square w-full overflow-auto rounded-md" />
-                <Pressure className="aspect-square w-full overflow-auto rounded-md bg-red-300" />
             </div>
         </div>
     );
