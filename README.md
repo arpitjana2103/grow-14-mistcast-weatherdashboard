@@ -32,10 +32,6 @@
 
 ## Application Features
 
-## Application Features
-
-## Application Features
-
 MistCast is a client-side weather dashboard built with React and the OpenWeatherMap API,
 delivering real-time weather intelligence through a clean, visually rich interface.
 
