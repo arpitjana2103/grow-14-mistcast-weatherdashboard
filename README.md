@@ -85,7 +85,7 @@ Local : http://localhost:5173/
 
 ## Contact Me
 
-[![GitHub ](https://img.shields.io/badge/GitHub-@arpitjana2103-orange?style=flat&logo=GitHub&link=https://github.com/arpitjana2103)](https://github.com/arpitjana21)
+[![Gmail ](https://img.shields.io/badge/Email-arpitjana2103@gmail.com-ffc9c9?style=flat&logo=gmail&logoColor=white&link=mailto:arpitjana2103@gmail.com)](mailto:arpitjana2103@gmail.com)
 [![LinkedIn ](https://img.shields.io/badge/LinkedIn-@arpitjana2103-0077b5?style=flat&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/arpitjana2103/)](https://www.linkedin.com/in/arpitjana2103/)
 
 ## LISENSE
