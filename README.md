@@ -43,13 +43,13 @@
 MistCast is a client-side weather dashboard built with React and the OpenWeatherMap API,
 delivering real-time weather intelligence through a clean, visually rich interface.
 
-**1. Complete Weather Intelligence**: Current conditions, a 48-hour interactive temperature chart (Actual vs Feels Like) built with **Recharts**, and an 8-day daily forecast — all powered by the **OpenWeatherMap OneCall v3.0 API**.\
-**2. Rich Detail Cards**: Eight dedicated mini-cards — Sunrise/Sunset arc, Moonrise arc, Wind compass, UV Index scale, Humidity bars, Precipitation, Visibility, and Cloud cover.\
-**3. Air Quality Index**: Full AQI breakdown with per-pollutant gradient scale indicators (SO₂, NO₂, PM2.5, PM10, O₃ and more) — powered by the **OpenWeatherMap Air Pollution API**.\
-**4. Live Weather Map**: Interactive map built with **React Leaflet** with switchable overlay layers — Temperature, Precipitation, Clouds, Pressure, and Wind.\
+**1. Complete Weather Intelligence**: Current conditions, a 48-hour interactive temperature chart (Actual vs Feels Like) built with **Recharts**, and an 8-day daily forecast - all powered by the **OpenWeatherMap OneCall v3.0 API**.\
+**2. Rich Detail Cards**: Eight dedicated mini-cards - Sunrise/Sunset arc, Moonrise arc, Wind compass, UV Index scale, Humidity bars, Precipitation, Visibility, and Cloud cover.\
+**3. Air Quality Index**: Full AQI breakdown with per-pollutant gradient scale indicators (SO₂, NO₂, PM2.5, PM10, O₃ and more) - powered by the **OpenWeatherMap Air Pollution API**.\
+**4. Live Weather Map**: Interactive map built with **React Leaflet** with switchable overlay layers - Temperature, Precipitation, Clouds, Pressure, and Wind.\
 **5. Location Search**: Search any city worldwide via **LocationIQ Geocoding API**, or detect your current position using the browser's Geolocation API.\
-**6. Fully Personalized**: Switch between Metric / Imperial units and toggle Light / Dark theme — all persisted across sessions via localStorage.\
-**7. Responsive**: Optimized across all screen sizes — desktop, tablet, and mobile.
+**6. Fully Personalized**: Switch between Metric / Imperial units and toggle Light / Dark theme - all persisted across sessions via localStorage.\
+**7. Responsive**: Optimized across all screen sizes - desktop, tablet, and mobile.
 
 ## Run Locally
 
