@@ -19,16 +19,16 @@
 
 <div align="center">
 
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat&logo=vite)](https://vite.dev/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
-[![React Router](https://img.shields.io/badge/React--Router-7-CA4245?style=flat&logo=reactrouter)](https://reactrouter.com/)
-[![Recharts](https://img.shields.io/badge/Recharts-2-22B5BF?style=flat&logo=chartdotjs)](https://recharts.org/)
-[![Schadcn](https://img.shields.io/badge/Schadcn-4-61DAFB?style=flat&logo=shadcnui)](https://ui.shadcn.com/)
-[![React Leaflet](https://img.shields.io/badge/React--Leaflet-5-3FB526?style=flat&logo=leaflet)](https://react-leaflet.js.org/)
-[![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-OneCall_3.0_API-EB6E4B?style=flat&logo=accuweather)](https://openweathermap.org/api)
-[![LocationIQ](https://img.shields.io/badge/LocationIQ-Geocoding_API-6B46C1?style=flat&logo=googlemaps)](https://locationiq.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-2b7fff?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8-7c86ff?style=flat&logo=vite&logoColor=white)](https://vite.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-00b8db?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![React Router](https://img.shields.io/badge/React--Router-7-CA4245?style=flat&logo=reactrouter&logoColor=white)](https://reactrouter.com/)
+[![Recharts](https://img.shields.io/badge/Recharts-2-fdc700?style=flat&logo=chartdotjs&logoColor=white)](https://recharts.org/)
+[![Schadcn](https://img.shields.io/badge/Schadcn-4-e2e8f0?style=flat&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
+[![React Leaflet](https://img.shields.io/badge/React--Leaflet-5-00bc7d?style=flat&logo=leaflet&logoColor=white)](https://react-leaflet.js.org/)
+[![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-OneCall_3.0_API-EB6E4B?style=flat&logo=accuweather&logoColor=white)](https://openweathermap.org/api)
+[![LocationIQ](https://img.shields.io/badge/LocationIQ-Geocoding_API-7c86ff?style=flat&logo=googlemaps&logoColor=white)](https://locationiq.com/)
 
 </div>
 
@@ -92,25 +92,25 @@ Local : http://localhost:5173/
 
 ## Tech Stack & Tools
 
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat&logo=vite)](https://vite.dev/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
-[![React Router](https://img.shields.io/badge/React--Router-7-CA4245?style=flat&logo=reactrouter)](https://reactrouter.com/)
-[![Recharts](https://img.shields.io/badge/Recharts-2-22B5BF?style=flat&logo=chartdotjs)](https://recharts.org/)
-[![React Leaflet](https://img.shields.io/badge/React--Leaflet-5-3FB526?style=flat&logo=leaflet)](https://react-leaflet.js.org/)
-[![Schadcn](https://img.shields.io/badge/Schadcn-4-61DAFB?style=flat&logo=shadcnui)](https://ui.shadcn.com/)
-[![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-OneCall_3.0_API-EB6E4B?style=flat&logo=accuweather)](https://openweathermap.org/api)
-[![LocationIQ](https://img.shields.io/badge/LocationIQ-Geocoding_API-6B46C1?style=flat&logo=googlemaps)](https://locationiq.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-2b7fff?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-00b8db?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![React Router](https://img.shields.io/badge/React--Router-7-CA4245?style=flat&logo=reactrouter&logoColor=white)](https://reactrouter.com/)
+[![Recharts](https://img.shields.io/badge/Recharts-2-fdc700?style=flat&logo=chartdotjs&logoColor=white)](https://recharts.org/)
+[![Schadcn](https://img.shields.io/badge/Schadcn-4-e2e8f0?style=flat&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
+[![React Leaflet](https://img.shields.io/badge/React--Leaflet-5-00bc7d?style=flat&logo=leaflet&logoColor=white)](https://react-leaflet.js.org/)
+[![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-OneCall_3.0_API-EB6E4B?style=flat&logo=accuweather&logoColor=white)](https://openweathermap.org/api)
+[![LocationIQ](https://img.shields.io/badge/LocationIQ-Geocoding_API-7c86ff?style=flat&logo=googlemaps&logoColor=white)](https://locationiq.com/)
 
-[![Zed](https://img.shields.io/badge/Zed-Editor-084CCF?style=flat&logo=zedindustries&logoColor=white)](https://zed.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-7c86ff?style=flat&logo=vite&logoColor=white)](https://vite.dev/)
+[![Zed](https://img.shields.io/badge/Zed-Editor-2b7fff?style=flat&logo=zedindustries&logoColor=white)](https://zed.dev/)
 [![Git](https://img.shields.io/badge/Git-VCS-F05032?style=flat&logo=git&logoColor=white)](https://git-scm.com/)
-[![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=flat&logo=github&logoColor=white)](https://github.com/)
-[![Claude](https://img.shields.io/badge/Claude-Sonnet%204.6-CC785C?style=flat&logo=anthropic&logoColor=white)](https://www.anthropic.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repo-e2e8f0?style=flat&logo=github&logoColor=white)](https://github.com/)
+[![Claude](https://img.shields.io/badge/Claude-Sonnet%204.6-EB6E4B?style=flat&logo=anthropic&logoColor=white)](https://www.anthropic.com/)
 
 ## Contact Me
 
-[![Gmail ](https://img.shields.io/badge/Email-arpitjana2103@gmail.com-ffc9c9?style=flat&logo=gmail&logoColor=white&link=mailto:arpitjana2103@gmail.com)](mailto:arpitjana2103@gmail.com)
+[![Gmail ](https://img.shields.io/badge/Email-arpitjana2103@gmail.com-ff6467?style=flat&logo=gmail&logoColor=white&link=mailto:arpitjana2103@gmail.com)](mailto:arpitjana2103@gmail.com)
 [![LinkedIn ](https://img.shields.io/badge/LinkedIn-@arpitjana2103-0077b5?style=flat&logo=signal&logoColor=white&link=https://www.linkedin.com/in/arpitjana2103/)](https://www.linkedin.com/in/arpitjana2103/)
 
 ## License
