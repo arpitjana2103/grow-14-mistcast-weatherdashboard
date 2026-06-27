@@ -11,10 +11,11 @@ export function useLocationSearchQuery(query: string) {
         queryKey: ["locations", query],
         queryFn: async function ({ signal }) {
             await sleepQuery(1000 * 1, signal);
-            return searchLocations(query);
+            return searchLocations(query, signal);
         },
         enabled: query.length > 0,
         staleTime: 1000 * 60 * 5,
+        refetchOnWindowFocus: false,
         retry: false,
     });
 }

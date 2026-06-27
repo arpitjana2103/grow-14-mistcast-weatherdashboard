@@ -9,7 +9,14 @@ import { LocationProvider } from "./contexts/location.context.tsx";
 import { ThemeProvider } from "./contexts/theme.context.tsx";
 import { UnitProvider } from "./contexts/unit.context.tsx";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 5,
+            gcTime:    1000 * 60 * 1,  // ← global default
+        },
+    },
+});
 
 createRoot(document.getElementById("root")!).render(
     // <StrictMode>
