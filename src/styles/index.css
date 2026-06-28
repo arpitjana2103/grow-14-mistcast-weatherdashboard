@@ -43,10 +43,12 @@
     html.dark {
         scrollbar-color: rgba(2, 6, 24, 0.2) transparent;
     }
+
     * {
         @apply border-border outline-ring/50;
         will-change: background-color, color, border-color;
     }
+
     body {
         @apply bg-background font-sans text-base text-foreground;
     }
@@ -117,13 +119,15 @@
 }
 
 .leaflet-container {
-    background: var(--background); /* match your dark tile color */
+    background: var(--background);
+    /* match your dark tile color */
 }
 
 @keyframes fade-in {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
